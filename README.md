@@ -1,7 +1,7 @@
 # DepthsOfDeceit
 Basically Underwater Among Us
 
-Topdown Test is (for now) a completely separate 2D game for the minigame(s)
+MinigameScene.unitypackage is the package for the minigame to add to the main game
 
 Known bugs:
   - Dashing (but not moving) diagonally is faster than straight up or down
