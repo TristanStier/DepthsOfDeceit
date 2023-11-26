@@ -10,9 +10,10 @@ public class PlayerScript : MonoBehaviour
 {
 
     public float moveSpeed = 5f;
-    private bool facingRight = true;
-    private bool facingUp = true;
+    public int lifePoints = 2;
+    public bool invulnerable = false;
     private bool canDash = true;
+    public float invulnerableTime = 1f;
     private bool isDashing;
     public float dashPower = 10f;
     public float dashTime = 0.2f;
@@ -74,9 +75,6 @@ public class PlayerScript : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().sprite = spriteRight;
         }
 
-        /*if (transform.position.y < bottom || transform.position.y > top || transform.position.x < left || transform.position.x > right) {
-            canMove = false;
-        }*/
         if (Input.GetKeyDown(KeyCode.Space) && canDash) {
             StartCoroutine(Dash());
         }
@@ -92,6 +90,7 @@ public class PlayerScript : MonoBehaviour
     private IEnumerator Dash() {
         canDash = false;
         isDashing = true;
+        invulnerable = true;
         if (d[0] == Direction.Right && d[1] == Direction.None) {
             rb.velocity = new Vector2(dashPower, 0f);
         } else if (d[0] == Direction.Left && d[1] == Direction.None) {
@@ -114,7 +113,13 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(dashTime);
         tr.emitting = false;
         isDashing = false;
+        invulnerable = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+    public IEnumerator setInvulnerable() {
+        invulnerable = true;
+        yield return new WaitForSeconds(invulnerableTime);
+        invulnerable = false;
     }
 }
