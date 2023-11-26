@@ -23,6 +23,8 @@ public class PlayerScript : MonoBehaviour
     public Sprite spriteLeft;
     public Sprite spriteRight;
     public Rigidbody2D rb;
+
+    public AudioSource dash;
     Vector2 movement;
     [SerializeField] private TrailRenderer tr;
 
@@ -91,6 +93,7 @@ public class PlayerScript : MonoBehaviour
         canDash = false;
         isDashing = true;
         invulnerable = true;
+        dash.Play();
         if (d[0] == Direction.Right && d[1] == Direction.None) {
             rb.velocity = new Vector2(dashPower, 0f);
         } else if (d[0] == Direction.Left && d[1] == Direction.None) {

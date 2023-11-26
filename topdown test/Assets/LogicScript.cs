@@ -6,6 +6,7 @@ public class LogicScript : MonoBehaviour
 {
 
     private PlayerScript player;
+    public AudioSource hit;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +22,12 @@ public class LogicScript : MonoBehaviour
     [ContextMenu("Decrease Life")] // add it to Unity
     public void decreaseLife(int num) {
         if (!player.invulnerable && player.lifePoints > 0) {
+            hit.Play();
             player.lifePoints -= num;
             player.StartCoroutine(player.setInvulnerable());
-            Debug.Log("Decreasing life");
+            Debug.Log("Decreasing life " + player.lifePoints);
         } else if (!player.invulnerable && player.lifePoints <= 0) {
+            hit.Play();
             gameOver();
         }
     }
