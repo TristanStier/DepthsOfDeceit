@@ -8,18 +8,19 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
     public InputField createInput;
     public InputField JoinInput;
-public void CreateRoom(){
-    PhotonNetwork.CreateRoom(createInput.text);
+    
+    public void CreateRoom()
+    {
+        PhotonNetwork.CreateRoom(createInput.text);
+    }
 
-}
-public void JoinRoom()
-{
+    public void JoinRoom()
+    {
         PhotonNetwork.JoinRoom(JoinInput.text);
-}
-public override void OnJoinedRoom()
-{
-    PhotonNetwork.LoadLevel("box");
-}
+    }
 
-
+    public override void OnJoinedRoom()
+    {
+        PhotonNetwork.LoadLevel("box");
+    }
 }

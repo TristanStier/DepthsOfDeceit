@@ -16,9 +16,9 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.JoinLobby();
     }
-        public override void OnJoinedLobby()
+    
+    public override void OnJoinedLobby()
     {
         SceneManager.LoadScene("SampleScene");
     }
-
 }
