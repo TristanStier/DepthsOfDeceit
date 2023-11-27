@@ -1,11 +1,9 @@
 using UnityEngine;
-using UnityEngine.UI;
 using Photon.Pun;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5f;
-    public float jumpForce = 10f;
     public float cameraSmoothTime = 0.1f;
 
     private Rigidbody2D rb;
@@ -28,38 +26,20 @@ public class PlayerController : MonoBehaviour
             float verticalInput = Input.GetAxis("Vertical");
 
             // Move the player
-            Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f) * speed * Time.deltaTime;
-            transform.Translate(movement);
+            rb.velocity = new UnityEngine.Vector2(horizontalInput, verticalInput).normalized*speed;
 
-            // Jumping
-            if (Input.GetButtonDown("Jump"))
+            // Flipping Character
+            if(horizontalInput > 0.01f)
             {
-                Jump();
+                transform.localScale = new UnityEngine.Vector3(1, 1, 1);
+            }
+            else if(horizontalInput < -0.01f)
+            {
+                transform.localScale = new UnityEngine.Vector3(-1, 1, 1);
             }
 
             // Camera follow
             CameraFollowPlayer();
-        }
-    }
-
-    // OnCollisionEnter2D is the correct method name
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(!view.IsMine)
-        {
-            if (collision.gameObject.CompareTag("Ground"))
-            {
-                // Assuming you have a Rigidbody2D component attached to your player
-                rb.velocity = Vector3.zero;
-            }
-        }
-    }
-
-    void Jump()
-    {
-        if(!view.IsMine)
-        {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }
 
@@ -76,7 +56,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Main Camera not found. Make sure your camera is named 'MaAin Camera'.");
+            Debug.LogError("Main Camera not found. Make sure your camera is named 'Main Camera'.");
         }
     }
 } 
