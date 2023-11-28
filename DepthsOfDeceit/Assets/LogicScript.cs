@@ -56,8 +56,11 @@ public class LogicScript : MonoBehaviour
         foreach (BoxCollider2D x in s) {
             x.enabled = true;
         }
-        //backgroundObj.GetComponent<SpriteRenderer>().enabled = true;
+        backgroundObj.GetComponent<SpriteRenderer>().enabled = true;
         GameObject p = Instantiate(playerObj);
+        p.tag = "MinigamePlayer";
+        p.GetComponent<Renderer>().sortingLayerID = SortingLayer.NameToID("Minigame_Player");
+
         p.transform.position = new Vector2(x: 0, y: 20);
     }
 }

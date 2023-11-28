@@ -15,11 +15,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - MinigamePlayer
+  - Minigame_Player
   - Water
   - UI
-  - MinigameShape
-  - 
+  - Minigame_Shape
+  - Minigame_Background
   - 
   - 
   - 
@@ -47,4 +47,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Minigame_Background
+    uniqueID: 2093664871
+    locked: 0
+  - name: Minigame_Shape
+    uniqueID: 2949444867
+    locked: 0
+  - name: Minigame_Player
+    uniqueID: 459806961
     locked: 0
