@@ -13,7 +13,9 @@ public class LogicScript : MonoBehaviour
     public GameObject playerObj;
     public GameObject shapeObj;
     public GameObject wallsObj;
+    public GameObject cameraObj;
     private bool loaded = false;
+    public Vector3 minigameCamPos = new Vector3(0, 20, 0);
     // Start is called before the first frame update
     void Start()
     {
@@ -49,12 +51,13 @@ public class LogicScript : MonoBehaviour
 
     public void beginMinigame() {
         loaded = true;
+        cameraObj.transform.position = minigameCamPos;
         BoxCollider2D[] s = wallsObj.GetComponentsInChildren<BoxCollider2D>();
         foreach (BoxCollider2D x in s) {
             x.enabled = true;
         }
         //backgroundObj.GetComponent<SpriteRenderer>().enabled = true;
         GameObject p = Instantiate(playerObj);
-        p.transform.position = new Vector2(x: 0, y: -1);
+        p.transform.position = new Vector2(x: 0, y: 20);
     }
 }
