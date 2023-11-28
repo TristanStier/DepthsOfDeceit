@@ -9,13 +9,11 @@ public class LogicScript : MonoBehaviour
     private PlayerScript player;
     private ShapeScript shape;
     public AudioSource hit;
-    public GameObject backgroundObj;
     public GameObject playerObj;
     public GameObject shapeObj;
     public GameObject wallsObj;
     public GameObject cameraObj;
     private bool loaded = false;
-    public Vector3 minigameCamPos = new Vector3(0, 20, 0);
     // Start is called before the first frame update
     void Start()
     {
@@ -51,12 +49,11 @@ public class LogicScript : MonoBehaviour
 
     public void beginMinigame() {
         loaded = true;
-        cameraObj.transform.position = minigameCamPos;
+        cameraObj.transform.position = new Vector3(0, 20, cameraObj.transform.position.z);
         BoxCollider2D[] s = wallsObj.GetComponentsInChildren<BoxCollider2D>();
         foreach (BoxCollider2D x in s) {
             x.enabled = true;
         }
-        backgroundObj.GetComponent<SpriteRenderer>().enabled = true;
         GameObject p = Instantiate(playerObj);
         p.tag = "MinigamePlayer";
         p.GetComponent<Renderer>().sortingLayerID = SortingLayer.NameToID("Minigame_Player");

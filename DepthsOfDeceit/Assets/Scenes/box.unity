@@ -898,12 +898,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hit: {fileID: 416058840}
-  backgroundObj: {fileID: 1889650882}
   playerObj: {fileID: 7180974156378639495, guid: e8f5c0664a73d3c4e8e465b4c976e774, type: 3}
   shapeObj: {fileID: 7279940964837715407, guid: 83642a38c249a844198d948f5e1644d6, type: 3}
   wallsObj: {fileID: 120001317}
   cameraObj: {fileID: 1840554370}
-  minigameCamPos: {x: 0, y: 20, z: 0}
 --- !u!1 &479910115
 GameObject:
   m_ObjectHideFlags: 0
@@ -3447,7 +3445,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.8490566, g: 0.108134575, b: 0.108134575, a: 0}
+  m_BackGroundColor: {r: 0, g: 0.03212036, b: 0.3679245, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
