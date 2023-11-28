@@ -39,7 +39,7 @@ public class ShapeScript : MonoBehaviour
     }
 
     public void OnTriggerEnter2DChild(Collider2D collision) {
-        if (collision.gameObject.tag == "MinigamePlayer" && hittable) { // check if it was the player
+        if (collision.gameObject.CompareTag("MinigamePlayer") && hittable) { // check if it was the player
             logic.decreaseLife(1);
         }
     }
