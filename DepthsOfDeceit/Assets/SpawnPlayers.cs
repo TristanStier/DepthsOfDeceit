@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
@@ -10,12 +8,19 @@ public class SpawnPlayers : MonoBehaviour
     public float minX;
     public float maxX;
 
-    public float maxY;
     public float minY;
+    public float maxY;
 
     private void Start()
     {
-        Vector2 randomPosition = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-        PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
+        if (PhotonNetwork.IsConnected)
+        {
+            Vector2 randomPosition = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+            PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogError("Photon is not connected. Make sure you are connected before trying to instantiate players.");
+        }
     }
 }
