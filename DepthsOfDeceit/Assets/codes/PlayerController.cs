@@ -1,8 +1,7 @@
 using UnityEngine;
-using UnityEngine.UI;
 using Photon.Pun;
 
-public class PlayerController : MonoBehaviour
+public class PlayerMovement : MonoBehaviourPun
 {
     public float speed = 5f;
     public float jumpForce = 10f;
