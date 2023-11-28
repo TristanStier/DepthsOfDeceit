@@ -33,9 +33,9 @@ public class ShapeScript : MonoBehaviour
         transform.position += Vector3.left * 2 * Time.deltaTime;
         transform.Rotate(0, 0, 3);
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        /*if (Input.GetKeyDown(KeyCode.Space)) {
             spawn();
-        }
+        }*/
     }
 
     public void OnTriggerEnter2DChild(Collider2D collision) {
@@ -44,10 +44,10 @@ public class ShapeScript : MonoBehaviour
         }
     }
 
-    public void spawn() {
+    /*public void spawn() {
         GameObject s = Instantiate(shapeObj, new Vector3(2f, 2f, 0f), transform.rotation);
         s.GetComponent<SpriteRenderer>().sprite = sp;
-    }
+    }*/
 
     /*class Shape {
         private shapeType shape;
