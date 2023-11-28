@@ -17,7 +17,7 @@ public class PlayerScript : MonoBehaviour
     private bool isDashing;
     public float dashPower = 10f;
     public float dashTime = 0.2f;
-    public float dashCooldown = 1f;
+    public float dashCooldown = 0.1f;
     private Direction[] d = {Direction.Right, Direction.None}; 
     
     public Sprite spriteLeft;
@@ -93,24 +93,9 @@ public class PlayerScript : MonoBehaviour
         canDash = false;
         isDashing = true;
         invulnerable = true;
+        
         dash.Play();
-        if (d[0] == Direction.Right && d[1] == Direction.None) {
-            rb.velocity = new Vector2(dashPower, 0f);
-        } else if (d[0] == Direction.Left && d[1] == Direction.None) {
-            rb.velocity = new Vector2(-dashPower, 0f);
-        } else if (d[0] == Direction.None && d[1] == Direction.Up) {
-            rb.velocity = new Vector2(0f, -dashPower);
-        } else if (d[0] == Direction.None && d[1] == Direction.Down) {
-            rb.velocity = new Vector2(0f, dashPower);
-        } else if (d[0] == Direction.Right && d[1] == Direction.Up) {
-            rb.velocity = new Vector2(dashPower, -dashPower);
-        } else if (d[0] == Direction.Left && d[1] == Direction.Up) {
-            rb.velocity = new Vector2(-dashPower, -dashPower);
-        } else if (d[0] == Direction.Right && d[1] == Direction.Down) {
-            rb.velocity = new Vector2(dashPower, dashPower);
-        } else if (d[0] == Direction.Left && d[1] == Direction.Down) {
-            rb.velocity = new Vector2(-dashPower, dashPower);
-        }
+        rb.velocity = new Vector2(movement.x * dashPower, movement.y * dashPower);
         tr.emitting = true;
 
         yield return new WaitForSeconds(dashTime);
