@@ -11,8 +11,6 @@ public class SpawnPlayers : MonoBehaviour
 
     public float minY;
     public float maxY;
-    public GameObject[] playerArray;
-    public int i = 0;
 
     private void Start()
     {
@@ -23,9 +21,8 @@ public class SpawnPlayers : MonoBehaviour
         if (PhotonNetwork.IsConnected)
         {
             Vector2 randomPosition = new Vector2(UnityEngine.Random.Range(minX, maxX), UnityEngine.Random.Range(minY, maxY));
-            playerArray[i] = PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
-            playerArray[i].name = "Player"+i.ToString();
-            i += 1;
+            GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
+            player.tag = "Player";
         }
         else
         {

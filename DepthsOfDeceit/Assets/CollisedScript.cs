@@ -20,8 +20,8 @@ public class CollisedScript : MonoBehaviour
     }
 
     public void OnTriggerEnter2D(Collider2D collision) {
-        if (!logic.loaded) {
-            logic.beginMinigame(collision.gameObject.name);
+        if (!logic.loaded && collision.gameObject.CompareTag("Player")) {
+            logic.beginMinigame(collision.gameObject);
         }
     }
 }

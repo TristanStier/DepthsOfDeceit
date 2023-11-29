@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviourPun
 
     private Rigidbody2D rb;
     private Vector3 cameraVelocity = Vector3.zero;
+    public bool minigame = false;
 
     PhotonView view;  
     
@@ -20,7 +21,7 @@ public class PlayerMovement : MonoBehaviourPun
 
     void Update()
     {
-        if (!view.IsMine)
+        if (!view.IsMine && !minigame)
         {
             // Get input from the player
             float horizontalInput = Input.GetAxis("Horizontal");
