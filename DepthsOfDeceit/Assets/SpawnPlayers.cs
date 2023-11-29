@@ -1,5 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
+using System;
 
 public class SpawnPlayers : MonoBehaviour
 {
@@ -10,13 +11,21 @@ public class SpawnPlayers : MonoBehaviour
 
     public float minY;
     public float maxY;
+    public GameObject[] playerArray;
+    public int i = 0;
 
     private void Start()
     {
+        spawnPlayer();
+    }
+
+    public void spawnPlayer() {
         if (PhotonNetwork.IsConnected)
         {
-            Vector2 randomPosition = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-            PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
+            Vector2 randomPosition = new Vector2(UnityEngine.Random.Range(minX, maxX), UnityEngine.Random.Range(minY, maxY));
+            playerArray[i] = PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
+            playerArray[i].name = "Player"+i.ToString();
+            i += 1;
         }
         else
         {

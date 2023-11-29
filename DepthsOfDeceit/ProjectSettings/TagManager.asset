@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Grouns
   - Ground
+  - MinigameWalls
+  - Logic
+  - MinigameLogic
+  - Shape
+  - MinigamePlayer
   layers:
   - Default
   - TransparentFX

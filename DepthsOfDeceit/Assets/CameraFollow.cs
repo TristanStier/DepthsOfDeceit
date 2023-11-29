@@ -10,6 +10,7 @@ public class CameraFollow : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private Transform target;
     private PhotonView view;
+    public bool minigame = false;
 
     void Start()
     {
@@ -37,7 +38,7 @@ public class CameraFollow : MonoBehaviour
     void Update()
     {
         // Check if the view is not null and if it's the local player's view before updating camera position
-        if (view.IsMine)
+        if (view.IsMine && !minigame)
         {
 
                 // Smoothly move the camera towards the target position
