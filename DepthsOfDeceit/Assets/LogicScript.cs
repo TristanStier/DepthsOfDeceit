@@ -19,6 +19,8 @@ public class LogicScript : MonoBehaviour
     public GameObject playerInstance;
     public GameObject collidedPlayer;
     public bool loaded = false;
+    public Color invincibleColor = new Color(0, 200, 255);
+    public Color regColor = new Color(255, 255, 255);
     public Vector3 previousCamPos;
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,18 @@ public class LogicScript : MonoBehaviour
         /*if (Input.GetKeyDown(KeyCode.Tab) && !loaded) {
             beginMinigame();
         }*/
+        if (loaded) {
+            if (playerScript.invulnerable) {
+                for(int i = 0; i < livesObj.transform.childCount; i++) {
+                    livesObj.transform.GetChild(i).GetComponent<SpriteRenderer>().color = new Color(0, 200, 255);
+                }
+            } else {
+                for(int i = 0; i < livesObj.transform.childCount; i++) {
+                    livesObj.transform.GetChild(i).GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                }
+            }
+        }
+        
     }
 
     [ContextMenu("Decrease Life")] // add it to Unity
@@ -50,6 +64,10 @@ public class LogicScript : MonoBehaviour
 
     [ContextMenu("Game Over")] // add it to Unity
     public void endMinigame() {
+        loaded = false;
+        for(int i = 0; i < livesObj.transform.childCount; i++) {
+           livesObj.transform.GetChild(i).GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+        }
         collidedPlayer.GetComponentInChildren<Camera>().transform.position = previousCamPos;
         collidedPlayer.GetComponentInChildren<CameraFollow>().minigame = false;
         collidedPlayer.GetComponentInChildren<PlayerMovement>().minigame = false;

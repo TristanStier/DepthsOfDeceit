@@ -152,8 +152,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 297910064}
   - {fileID: 569731326}
+  - {fileID: 297910064}
   - {fileID: 2120630329}
   m_Father: {fileID: 2037832654}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 297910064}
   - component: {fileID: 297910065}
   m_Layer: 0
-  m_Name: Life1
+  m_Name: Life2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -636,7 +636,7 @@ Transform:
   m_GameObject: {fileID: 297910063}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.43, y: 5, z: 0}
+  m_LocalPosition: {x: -17.43, y: 5, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1021,7 +1021,7 @@ GameObject:
   - component: {fileID: 569731326}
   - component: {fileID: 569731327}
   m_Layer: 0
-  m_Name: Life2
+  m_Name: Life1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1036,7 +1036,7 @@ Transform:
   m_GameObject: {fileID: 569731325}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -17.43, y: 5, z: 0}
+  m_LocalPosition: {x: -19.43, y: 5, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1802,6 +1802,8 @@ MonoBehaviour:
   playerInstance: {fileID: 0}
   collidedPlayer: {fileID: 0}
   loaded: 0
+  invincibleColor: {r: 0, g: 0, b: 0, a: 0}
+  regColor: {r: 255, g: 255, b: 255, a: 1}
   previousCamPos: {x: 0, y: 0, z: 0}
 --- !u!1 &919225592
 GameObject:
@@ -4302,7 +4304,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1906178648262958956, guid: acfd10cc281815c4abb4efe540d862cf, type: 3}
       propertyPath: m_Emitting
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1906178648262958956, guid: acfd10cc281815c4abb4efe540d862cf, type: 3}
       propertyPath: m_SortingLayer
@@ -4314,7 +4316,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1963778363590291071, guid: acfd10cc281815c4abb4efe540d862cf, type: 3}
       propertyPath: hittable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3298275916755220173, guid: acfd10cc281815c4abb4efe540d862cf, type: 3}
       propertyPath: m_Sprite
