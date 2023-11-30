@@ -65,9 +65,6 @@ public class LogicScript : MonoBehaviour
     [ContextMenu("Game Over")] // add it to Unity
     public void endMinigame() {
         loaded = false;
-        for(int i = 0; i < livesObj.transform.childCount; i++) {
-           livesObj.transform.GetChild(i).GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-        }
         collidedPlayer.GetComponentInChildren<Camera>().transform.position = previousCamPos;
         collidedPlayer.GetComponentInChildren<CameraFollow>().minigame = false;
         collidedPlayer.GetComponentInChildren<PlayerMovement>().minigame = false;
@@ -87,6 +84,7 @@ public class LogicScript : MonoBehaviour
         player.GetComponentInChildren<PlayerMovement>().minigame = true;
         for(int i = 0; i < livesObj.transform.childCount; i++) {
            livesObj.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = true;
+           livesObj.transform.GetChild(i).GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
         }
         GameObject p = Instantiate(playerObj);
         playerInstance = p;
