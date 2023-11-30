@@ -64,3 +64,6 @@ TagManager:
   - name: Minigame_Life
     uniqueID: 3635173323
     locked: 0
+  - name: Minigame_Foreground_Shapes
+    uniqueID: 2120895127
+    locked: 0

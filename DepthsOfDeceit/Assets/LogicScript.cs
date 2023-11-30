@@ -15,6 +15,7 @@ public class LogicScript : MonoBehaviour
     public GameObject wallsObj;
     public GameObject backgroundObj;
     public GameObject livesObj;
+    public GameObject animationObj;
     public GameObject playerInstance;
     public GameObject collidedPlayer;
     public bool loaded = false;

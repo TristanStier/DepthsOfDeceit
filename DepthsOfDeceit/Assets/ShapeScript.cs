@@ -23,15 +23,15 @@ public class ShapeScript : MonoBehaviour
     void Start()
     {
         logic = GameObject.FindGameObjectWithTag("MinigameLogic").GetComponent<LogicScript>();
-        
     }
 
     // Update is called once per frame
     void Update()
     {
         // Tests
-        transform.position += Vector3.left * 2 * Time.deltaTime;
-        transform.Rotate(0, 0, 3);
+        transform.position += Vector3.left * 5 * Time.deltaTime;
+        //transform.Rotate(0, 0, -3);
+        
 
         /*if (Input.GetKeyDown(KeyCode.Space)) {
             spawn();
