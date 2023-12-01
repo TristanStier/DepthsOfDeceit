@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 394442610}
   m_Layer: 0
   m_Name: 9-Sliced
-  m_TagString: Untagged
+  m_TagString: MinigameTeleporter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1384,6 +1384,7 @@ MonoBehaviour:
   animationObj: {fileID: 125715488}
   playerInstance: {fileID: 0}
   collidedPlayer: {fileID: 0}
+  teleporter: {fileID: 0}
   loaded: 0
   invincibleColor: {r: 0, g: 200, b: 255, a: 1}
   regColor: {r: 255, g: 255, b: 255, a: 1}

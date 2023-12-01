@@ -12,6 +12,7 @@ TagManager:
   - MinigameLogic
   - Shape
   - MinigamePlayer
+  - MinigameTeleporter
   layers:
   - Default
   - TransparentFX

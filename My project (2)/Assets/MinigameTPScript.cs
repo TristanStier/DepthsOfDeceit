@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 
-public class CollisedScript : MonoBehaviour
+public class MinigameTPScript : MonoBehaviour
 {
 
     public LogicScript logic;

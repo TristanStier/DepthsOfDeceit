@@ -77,6 +77,9 @@ public class LogicScript : MonoBehaviour
     }
 
     public void beginMinigame(GameObject player) {
+        if (loaded) {
+            return;
+        }
         collidedPlayer = player;
         previousCamPos = new Vector3(player.GetComponentInChildren<Camera>().transform.position.x,  player.GetComponentInChildren<Camera>().transform.position.y,  player.GetComponentInChildren<Camera>().transform.position.z);
         player.GetComponentInChildren<Camera>().transform.position = new Vector3(-2, 56.1f,  player.GetComponentInChildren<Camera>().transform.position.z);
