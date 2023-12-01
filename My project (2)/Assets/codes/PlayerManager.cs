@@ -10,11 +10,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks
         // Instantiate the player prefab for the local player only
         if (PhotonNetwork.IsConnected)
         {
-            if(photonView.IsMine){
-
-           
             PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
         }
-         }
     }
 }

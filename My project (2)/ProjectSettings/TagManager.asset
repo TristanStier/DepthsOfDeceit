@@ -7,6 +7,11 @@ TagManager:
   - Grouns
   - Ground
   - Teleport
+  - MinigameWalls
+  - Logic
+  - MinigameLogic
+  - Shape
+  - MinigamePlayer
   layers:
   - Default
   - TransparentFX
@@ -43,4 +48,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Minigame_Background
+    uniqueID: 4169812597
+    locked: 0
+  - name: Minigame_Background_Shapes
+    uniqueID: 405540823
+    locked: 0
+  - name: Minigame_Shapes
+    uniqueID: 3480091121
+    locked: 0
+  - name: Minigame_Player
+    uniqueID: 4279142989
+    locked: 0
+  - name: Minigame_Lives
+    uniqueID: 706622041
+    locked: 0
+  - name: Minigame_Foreground_Shapes
+    uniqueID: 1634959617
     locked: 0

@@ -4,10 +4,11 @@ using Photon.Pun;
 public class PlayerMovement : MonoBehaviourPun
 {
     public float speed = 5f;
+    public bool minigame = false;
 
     void Update()
     {
-        if (photonView.IsMine)
+        if (photonView.IsMine && !minigame)
         {
             // Handle movement only for the local player
 
