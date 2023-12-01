@@ -67,7 +67,6 @@ public class LogicScript : MonoBehaviour
         collidedPlayer.GetComponentInChildren<Camera>().transform.position = previousCamPos;
         collidedPlayer.GetComponentInChildren<CameraFollow>().minigame = false;
         collidedPlayer.GetComponentInChildren<PlayerMovement>().minigame = false;
-        //collidedPlayer.GetComponentInChildren<CameraController>().minigame = false;
         Destroy(playerInstance);
         loaded = false;
     }
@@ -85,7 +84,6 @@ public class LogicScript : MonoBehaviour
         player.GetComponentInChildren<Camera>().transform.position = new Vector3(-2, 56.1f,  player.GetComponentInChildren<Camera>().transform.position.z);
         player.GetComponentInChildren<CameraFollow>().minigame = true;
         player.GetComponentInChildren<PlayerMovement>().minigame = true;
-        //collidedPlayer.GetComponentInChildren<CameraController>().minigame = true;
         for(int i = 0; i < livesObj.transform.childCount; i++) {
            livesObj.transform.GetChild(i).GetComponent<SpriteRenderer>().enabled = true;
            livesObj.transform.GetChild(i).GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
