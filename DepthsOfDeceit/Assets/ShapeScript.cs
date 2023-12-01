@@ -29,7 +29,7 @@ public class ShapeScript : MonoBehaviour
     void Update()
     {
         // Tests
-        transform.position += Vector3.left * 5 * Time.deltaTime;
+        //transform.position += Vector3.left * 5 * Time.deltaTime;
         //transform.Rotate(0, 0, -3);
         
 
@@ -38,7 +38,7 @@ public class ShapeScript : MonoBehaviour
         }*/
     }
 
-    public void OnTriggerEnter2DChild(Collider2D collision) {
+    public void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("MinigamePlayer") && hittable) { // check if it was the player
             logic.decreaseLife(1);
         }

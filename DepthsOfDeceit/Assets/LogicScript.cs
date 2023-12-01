@@ -9,6 +9,7 @@ public class LogicScript : MonoBehaviour
 
     private PlayerScript playerScript;
     private ShapeScript shapeScript;
+    private LevelScript levelScript;
     public AudioSource hit;
     public GameObject playerObj;
     public GameObject shapeObj;
@@ -22,9 +23,11 @@ public class LogicScript : MonoBehaviour
     public Color invincibleColor = new Color(0, 200, 255);
     public Color regColor = new Color(255, 255, 255);
     public Vector3 previousCamPos;
+    public int currentLevel = 1;
     // Start is called before the first frame update
     void Start()
     {
+        levelScript.loadLevel(currentLevel); make a LevelScript with a loadLevel function that needs an int
     }
 
     // Update is called once per frame
@@ -45,6 +48,12 @@ public class LogicScript : MonoBehaviour
             }
         }
         
+    }
+
+    public void winMinigame()
+    {
+        currentLevel++;
+        endMinigame();
     }
 
     [ContextMenu("Decrease Life")] // add it to Unity
