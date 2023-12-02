@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun.Demo.SlotRacer;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LogicScript : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class LogicScript : MonoBehaviour
     public GameObject backgroundObj;
     public GameObject livesObj;
     public GameObject animationObj;
+    public Slider taskBarObj;
+    public GameObject taskBarGameObj;
     public GameObject playerInstance;
     public GameObject collidedPlayer;
     public bool loaded = false;
@@ -68,6 +71,8 @@ public class LogicScript : MonoBehaviour
         collidedPlayer.GetComponentInChildren<CameraFollow>().minigame = false;
         collidedPlayer.GetComponentInChildren<PlayerMovement>().minigame = false;
         Destroy(playerInstance);
+        taskBarGameObj.SetActive(true);
+        taskBarObj.value += 1;
         loaded = false;
     }
 
@@ -79,6 +84,7 @@ public class LogicScript : MonoBehaviour
         if (loaded) {
             return;
         }
+        taskBarGameObj.SetActive(false);
         collidedPlayer = player;
         previousCamPos = new Vector3(player.GetComponentInChildren<Camera>().transform.position.x,  player.GetComponentInChildren<Camera>().transform.position.y,  player.GetComponentInChildren<Camera>().transform.position.z);
         player.GetComponentInChildren<Camera>().transform.position = new Vector3(-2, 56.1f,  player.GetComponentInChildren<Camera>().transform.position.z);

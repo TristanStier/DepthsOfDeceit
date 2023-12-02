@@ -44,10 +44,10 @@ public class ShapeScript : MonoBehaviour
         }
     }
 
-    /*public void spawn() {
+    public void spawn() {
         GameObject s = Instantiate(shapeObj, new Vector3(2f, 2f, 0f), transform.rotation);
         s.GetComponent<SpriteRenderer>().sprite = sp;
-    }*/
+    }
 
     /*class Shape {
         private shapeType shape;
