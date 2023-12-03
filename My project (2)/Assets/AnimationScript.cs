@@ -33,7 +33,7 @@ public class AnimationScript : MonoBehaviour
         s.GetComponent<Renderer>().sortingLayerID = SortingLayer.NameToID(layer);
         s.GetComponent<TrailRenderer>().sortingLayerID = SortingLayer.NameToID(trailLayer);
         SpriteRenderer sSprite = s.GetComponent<SpriteRenderer>();
-        //sSprite.color = col;
+        sSprite.color = col;
         s.transform.localScale = scale;
         ShapeScript sScript = s.GetComponent<ShapeScript>();
         sScript.rotationSpeed = rotSpeed;
