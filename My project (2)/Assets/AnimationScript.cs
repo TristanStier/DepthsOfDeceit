@@ -116,13 +116,13 @@ public class AnimationScript : MonoBehaviour
         SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 11, new Vector3(.5f, 30, 1), startRot: 45, alpha: .01f, hittable: false, layer: "Minigame_Background_Shapes", warning: false);
         SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 11, new Vector3(.5f, 30, 1), startRot: 135, alpha: .01f, hittable: false, layer: "Minigame_Background_Shapes", warning: false);
 
-        //yield return new WaitForSeconds(7);
-        // MAKE SURE THAT ALL SHAPES ARE DESTROYED BEFORE ENDING THE MINIGAME!!!
         for (int i = 0; i < 30; i++) {
             yield return new WaitForSeconds(.5f);
             SpawnStationary(triangle, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), -4, 2, new Vector3(1, 1, 1));
         }
         yield return new WaitForSeconds(5);
+
+        // MAKE SURE THAT ALL SHAPES ARE DESTROYED BEFORE ENDING THE MINIGAME!!!
         lScript.endMinigame();
     }
 }
