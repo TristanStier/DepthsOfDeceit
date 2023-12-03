@@ -88,7 +88,7 @@ public class LogicScript : MonoBehaviour
         if (loaded) {
             return;
         }
-        animationScript.Level1();
+        StartCoroutine(animationScript.Level1());
         taskBarGameObj.SetActive(false);
         collidedPlayer = player;
         previousCamPos = new Vector3(player.GetComponentInChildren<Camera>().transform.position.x,  player.GetComponentInChildren<Camera>().transform.position.y,  player.GetComponentInChildren<Camera>().transform.position.z);

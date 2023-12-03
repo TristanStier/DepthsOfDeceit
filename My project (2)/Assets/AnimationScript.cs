@@ -24,6 +24,12 @@ public class AnimationScript : MonoBehaviour
     }
 
     public GameObject circle, square, triangle, hexagon, rhombus, capsule, roundedSquare;
+    public GameObject logic;
+    public LogicScript lScript;
+
+    void Start() {
+        lScript = logic.GetComponent<LogicScript>();
+    }
 
     public GameObject Spawn(GameObject shape, Vector2 pos, Color col, Trail t, int rotSpeed, int moveSpeed, bool isWiper, int dur, Direction dir, Vector3 scale, string layer, string trailLayer, bool isWarning) {
         GameObject s = Instantiate(shape);
@@ -91,9 +97,12 @@ public class AnimationScript : MonoBehaviour
         return s;
     }
 
-    public void Level1() {
-        //Spawn(hexagon, new Vector2(6, 55), new Color(0, 0, 255), Trail.HasTrail, 4, 4, true, Direction.Left, "Minigame_Shapes", "Minigame_Shapes_Trail", false);
+    public IEnumerator Level1() {
+        yield return new WaitForSeconds(1);
         SpawnStationary(triangle, new Vector2(.8f, .7f), new Color(0, 0, 255), -4, 3, new Vector3(1, 1, 1));
+        yield return new WaitForSeconds(2);
         SpawnWiper(hexagon, .2f, new Color(0, 0, 255), Trail.HasTrail, 4, 4, new Vector3(1, 1, 1), Direction.Right);
+        yield return new WaitForSeconds(6);
+        lScript.endMinigame();
     }
 }
