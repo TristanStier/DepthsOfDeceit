@@ -26,6 +26,7 @@ public class AnimationScript : MonoBehaviour
     public GameObject circle, square, triangle, hexagon, rhombus, capsule, roundedSquare;
     public GameObject logic;
     public LogicScript lScript;
+    public AudioSource lv1Music;
 
     void Start() {
         lScript = logic.GetComponent<LogicScript>();
@@ -101,6 +102,7 @@ public class AnimationScript : MonoBehaviour
 
     public IEnumerator Level1() {
         yield return new WaitForSeconds(1);
+        lv1Music.Play();
         GameObject s = SpawnStationary(triangle, new Vector2(.8f, .7f), new Color(0, 0, 255), 0, 3, new Vector3(1, 1, 1), 270);
         yield return new WaitForSeconds(2);
         SpawnWiper(hexagon, .2f, new Color(0, 0, 255), Trail.HasTrail, 4, 4, new Vector3(1, 1, 1), Direction.Right);
@@ -123,6 +125,7 @@ public class AnimationScript : MonoBehaviour
         yield return new WaitForSeconds(5);
 
         // MAKE SURE THAT ALL SHAPES ARE DESTROYED BEFORE ENDING THE MINIGAME!!!
+        lv1Music.Stop();
         lScript.endMinigame();
     }
 }
