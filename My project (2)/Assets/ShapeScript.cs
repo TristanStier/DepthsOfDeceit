@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShapeScript : MonoBehaviour
@@ -18,6 +19,23 @@ public class ShapeScript : MonoBehaviour
     public bool hittable = true;
     public GameObject shapeObj;
     public Sprite sp;
+
+    public enum Trail {
+        HasTrail,
+        NoTrail
+    }
+
+    public enum Warning {
+        DisplayWarning,
+        NoWarning
+    }
+
+    private enum Direction {
+        Right,
+        Left,
+        Up,
+        Down
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -29,7 +47,7 @@ public class ShapeScript : MonoBehaviour
     void Update()
     {
         // Tests
-        transform.position += Vector3.left * 5 * Time.deltaTime;
+        //transform.position += Vector3.left * 5 * Time.deltaTime;
         //transform.Rotate(0, 0, -3);
         
 
@@ -44,32 +62,28 @@ public class ShapeScript : MonoBehaviour
         }
     }
 
-    public void spawn() {
+    /*public void spawn() {
         GameObject s = Instantiate(shapeObj, new Vector3(2f, 2f, 0f), transform.rotation);
         s.GetComponent<SpriteRenderer>().sprite = sp;
+    }*/
+
+    /*public GameObject Spawn(GameObject shape, Vector2 pos, Color col, Trail t, float rotSpeed) {
+        GameObject s = Instantiate(shape);
+        s.transform.position = pos;
+        s.GetComponent<TrailRenderer>().emitting = (t == Trail.HasTrail);
+        s.tag = "MinigameShape";
+        s.GetComponent<Renderer>().sortingLayerID = SortingLayer.NameToID("Minigame_Shape");
+        s.GetComponent<TrailRenderer>().sortingLayerID = SortingLayer.NameToID("Minigame_Shape");
+        s.GetComponent<SpriteRenderer>().color = col;
+        s.transform.Rotate(rotSpeed * Time.deltaTime * Vector3.forward);
+        return s;
+    }*/
+
+    /*public GameObject SpawnStationary(GameObject shape, Direction d, Warning w, Vector2 pos, Color col, Trail t) {
+
     }
 
-    /*class Shape {
-        private shapeType shape;
-        private bool isEmitting;
-        private Color shapeColor;
-        private float[2] scale;
-        private float[2] coords;
-
-
-        public Shape(shapeType s=shapeType.Circle, bool isE=false, Color c=new Color(0, 44, 180), float[] sc={1, 1}, float[] cds={0, 0}) {
-            shape = s;
-            isEmitting = isE;
-            shapeColor = c;
-            for (int i = 0; i < 2; i++) {
-                scale[i] = sc[i];
-                coords[i] = cds[i];
-            }
-        }
-
-        public void draw() {
-            Instantiate(shapeObj, new Vector3(coords[0], coords[1]), transform.rotation);
-        }
-
+    public GameObject SpawnWiper() {
+        
     }*/
 }

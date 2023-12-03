@@ -9,7 +9,7 @@ public class LogicScript : MonoBehaviour
 {
 
     private PlayerScript playerScript;
-    private ShapeScript shapeScript;
+    private AnimationScript animationScript;
     public AudioSource hit;
     public GameObject playerObj;
     public GameObject shapeObj;
@@ -19,6 +19,7 @@ public class LogicScript : MonoBehaviour
     public GameObject animationObj;
     public Slider taskBarObj;
     public GameObject taskBarGameObj;
+    public GameObject AnimationObj;
     public GameObject playerInstance;
     public GameObject collidedPlayer;
     public bool loaded = false;
@@ -28,6 +29,7 @@ public class LogicScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animationScript = animationObj.GetComponent<AnimationScript>();
     }
 
     // Update is called once per frame
