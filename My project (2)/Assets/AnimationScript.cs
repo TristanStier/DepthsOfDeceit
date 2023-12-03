@@ -104,7 +104,10 @@ public class AnimationScript : MonoBehaviour
         GameObject s = SpawnStationary(triangle, new Vector2(.8f, .7f), new Color(0, 0, 255), 0, 3, new Vector3(1, 1, 1), 270);
         yield return new WaitForSeconds(2);
         SpawnWiper(hexagon, .2f, new Color(0, 0, 255), Trail.HasTrail, 4, 4, new Vector3(1, 1, 1), Direction.Right);
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(3);
+        SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 6, new Vector3(.5f, 30, 1));
+        yield return new WaitForSeconds(7);
+        // MAKE SURE THAT ALL SHAPES ARE DESTROYED BEFORE ENDING THE MINIGAME!!!
         /*while (true) {
             yield return new WaitForSeconds(.5f);
             SpawnStationary(triangle, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), -4, 3, new Vector3(1, 1, 1));
