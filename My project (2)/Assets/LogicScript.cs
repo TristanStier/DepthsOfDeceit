@@ -74,7 +74,9 @@ public class LogicScript : MonoBehaviour
         collidedPlayer.GetComponentInChildren<PlayerMovement>().minigame = false;
         Destroy(playerInstance);
         taskBarGameObj.SetActive(true);
-        taskBarObj.value += 1;
+        if (playerInstance.GetComponent<PlayerScript>().lifePoints > 0) {
+            taskBarObj.value += 1;
+        }
         loaded = false;
     }
 
