@@ -35,7 +35,7 @@ public class ShapeScript : MonoBehaviour
         transform.position += moveSpeed * Time.deltaTime * Vector3.left;
     }
 
-    public void OnTriggerEnter2DChild(Collider2D collision) {
+    public void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("MinigamePlayer") && hittable) { // check if it was the player
             logic.decreaseLife(1);
         }

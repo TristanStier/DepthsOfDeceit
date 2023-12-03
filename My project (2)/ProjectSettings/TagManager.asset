@@ -14,6 +14,7 @@ TagManager:
   - MinigamePlayer
   - MinigameTeleporter
   - MinigameShape
+  - DeadZone
   layers:
   - Default
   - TransparentFX

@@ -23,6 +23,8 @@ public class AnimationScript : MonoBehaviour
     }
 
     public GameObject circle, square, triangle, hexagon, rhombus, capsule, roundedSquare;
+    public float dzXleft = -15f, dzXright = 12f;
+    public float dzYup = 67f, dzYdown = 44f;
 
     public GameObject Spawn(GameObject shape, Vector2 pos, Color col, Trail t, int rotSpeed, int moveSpeed) {
         GameObject s = Instantiate(shape);
