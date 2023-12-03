@@ -32,7 +32,7 @@ public class AnimationScript : MonoBehaviour
         lScript = logic.GetComponent<LogicScript>();
     }
 
-    public GameObject Spawn(GameObject shape, Vector2 pos, Color col, Trail t, int rotSpeed, int moveSpeed, bool isWiper, int dur, Direction dir, Vector3 scale, float alpha, bool hittable, float startRot, string layer, string trailLayer, bool isWarning) {
+    public GameObject Spawn(GameObject shape, Vector2 pos, Color col, Trail t, int rotSpeed, int moveSpeed, bool isWiper, float dur, Direction dir, Vector3 scale, float alpha, bool hittable, float startRot, string layer, string trailLayer, bool isWarning) {
         GameObject s = Instantiate(shape);
         s.transform.position = pos;
         s.transform.eulerAngles = new Vector3(0, 0, startRot);
@@ -70,12 +70,12 @@ public class AnimationScript : MonoBehaviour
         col.a = 1;
         sSprite.color = col;
     }
-    private IEnumerator DestroyAfterDuration(GameObject s, int time) {
+    private IEnumerator DestroyAfterDuration(GameObject s, float time) {
         yield return new WaitForSeconds(time+1);
         Destroy(s);
     }
 
-    public GameObject SpawnStationary(GameObject shape, Vector2 pos, Color col, int rotSpeed, int dur, Vector3 scale, float startRot=0f, float alpha=1f, bool hittable=true, string layer = "Minigame_Shapes", string trailLayer = "Minigame_Shapes_Trail", bool warning=true) {
+    public GameObject SpawnStationary(GameObject shape, Vector2 pos, Color col, int rotSpeed, float dur, Vector3 scale, float startRot=0f, float alpha=1f, bool hittable=true, string layer = "Minigame_Shapes", string trailLayer = "Minigame_Shapes_Trail", bool warning=true) {
         pos.x = Mathf.Lerp(-10.5f, 6.5f, pos.x);
         pos.y = Mathf.Lerp(51.5f, 60.5f, pos.y);
         GameObject s = Spawn(shape, pos, col, Trail.NoTrail, rotSpeed, 0, false, dur , 0, scale, alpha, hittable, startRot, layer, trailLayer, warning);
@@ -100,8 +100,9 @@ public class AnimationScript : MonoBehaviour
         return s;
     }
 
-    public IEnumerator Level1() {
+    public IEnumerator LevelTest() {
         yield return new WaitForSeconds(1);
+        lScript.currentMusic = lv1Music;
         lv1Music.Play();
         GameObject s = SpawnStationary(triangle, new Vector2(.8f, .7f), new Color(0, 0, 255), 0, 3, new Vector3(1, 1, 1), 270);
         yield return new WaitForSeconds(2);
@@ -123,6 +124,35 @@ public class AnimationScript : MonoBehaviour
             SpawnStationary(triangle, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), -4, 2, new Vector3(1, 1, 1));
         }
         yield return new WaitForSeconds(5);
+
+        // MAKE SURE THAT ALL SHAPES ARE DESTROYED BEFORE ENDING THE MINIGAME!!!
+        lv1Music.Stop();
+        lScript.endMinigame();
+    }
+    public IEnumerator Level1() {
+        yield return new WaitForSeconds(1);
+        lScript.currentMusic = lv1Music;
+        lv1Music.Play();
+        for (int i = 0; i < 22; i++) {
+            yield return new WaitForSeconds(.4f);
+            SpawnStationary(triangle, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), Random.Range(-3, 3), 2, new Vector3(1, 1, 1));
+        }
+        for (int i = 0; i < 25; i++) {
+            yield return new WaitForSeconds(.4f);
+            SpawnStationary(hexagon, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), Random.Range(-3, 3), 2, new Vector3(1, 1, 1));
+        }
+        SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 17, new Vector3(.5f, 30, 1), startRot: 0, alpha: .01f, hittable: false, layer: "Minigame_Background_Shapes", warning: false);
+        SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 17, new Vector3(.5f, 30, 1), startRot: 90, alpha: .01f, hittable: false, layer: "Minigame_Background_Shapes", warning: false);
+        SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 17, new Vector3(.5f, 30, 1), startRot: 45, alpha: .01f, hittable: false, layer: "Minigame_Background_Shapes", warning: false);
+        SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 17, new Vector3(.5f, 30, 1), startRot: 135, alpha: .01f, hittable: false, layer: "Minigame_Background_Shapes", warning: false);
+        for (int i = 0; i < 18; i++) {
+            float s = Random.Range(1, 4);
+            yield return new WaitForSeconds(1.2f);
+            SpawnStationary(circle, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, .8f, new Vector3(s, s, 0));
+            //yield return new WaitForSeconds(1f);
+        }
+        SpawnWiper(square, .2f, new Color(0, 0, 40), Trail.NoTrail, 4, 9, new Vector3(6, 6, 1), Direction.Right, layer: "Minigame_Foreground_Shapes", hittable: false);
+        yield return new WaitForSeconds(3);
 
         // MAKE SURE THAT ALL SHAPES ARE DESTROYED BEFORE ENDING THE MINIGAME!!!
         lv1Music.Stop();

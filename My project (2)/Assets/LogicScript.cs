@@ -23,6 +23,7 @@ public class LogicScript : MonoBehaviour
     public GameObject playerInstance;
     public GameObject collidedPlayer;
     public IEnumerator currentLevel;
+    public AudioSource currentMusic;
     public bool loaded = false;
     public Color invincibleColor = new Color(0, 200, 255);
     public Color regColor = new Color(255, 255, 255);
@@ -71,6 +72,7 @@ public class LogicScript : MonoBehaviour
     [ContextMenu("Game Over")] // add it to Unity
     public void endMinigame() {
         StopCoroutine(currentLevel);
+        currentMusic.Stop();
         collidedPlayer.GetComponentInChildren<Camera>().transform.position = previousCamPos;
         collidedPlayer.GetComponentInChildren<CameraFollow>().minigame = false;
         collidedPlayer.GetComponentInChildren<PlayerMovement>().minigame = false;
