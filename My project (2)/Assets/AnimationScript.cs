@@ -105,10 +105,10 @@ public class AnimationScript : MonoBehaviour
         yield return new WaitForSeconds(2);
         SpawnWiper(hexagon, .2f, new Color(0, 0, 255), Trail.HasTrail, 4, 4, new Vector3(1, 1, 1), Direction.Right);
         yield return new WaitForSeconds(6);
-        while (true) {
+        /*while (true) {
             yield return new WaitForSeconds(.5f);
             SpawnStationary(triangle, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), -4, 3, new Vector3(1, 1, 1));
-        }
+        }*/
         lScript.endMinigame();
     }
 }
