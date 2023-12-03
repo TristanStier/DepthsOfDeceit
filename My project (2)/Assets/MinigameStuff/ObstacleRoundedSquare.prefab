@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -814876175
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -5177388603050735206, guid: f2e207d8f27724e4eb8b1b3cb5dea80d, type: 3}
   m_Color: {r: 0.09371662, g: 0.19700181, b: 0.735849, a: 1}
@@ -127,9 +127,9 @@ TrailRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -814876175
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Time: 5
+  m_Time: 1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -212,9 +212,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07ead350de0db324da040cf933082a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animScript: {fileID: 0}
   hittable: 1
   shapeObj: {fileID: 0}
   sp: {fileID: 0}
+  rotationSpeed: 0
+  moveSpeed: 0
+  dzXleft: -15
+  dzXright: 12
+  dzYup: 67
+  dzYdown: 44
+  isWiper: 0
+  dir: 0
 --- !u!61 &8272039652519590354
 BoxCollider2D:
   m_ObjectHideFlags: 0
