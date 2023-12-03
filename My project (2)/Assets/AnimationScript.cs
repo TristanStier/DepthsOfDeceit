@@ -77,7 +77,7 @@ public class AnimationScript : MonoBehaviour
 
     public void Level1() {
         //Spawn(hexagon, new Vector2(6, 55), new Color(0, 0, 255), Trail.HasTrail, 4, 4, true, Direction.Left, "Minigame_Shapes", "Minigame_Shapes_Trail", false);
-        SpawnStationary(hexagon, new Vector2(0, 55), new Color(0, 0, 255), -1, 1, new Vector3(1, 1, 1));
-        //SpawnWiper(hexagon, new Vector2(6, 55), new Color(0, 0, 255), Trail.HasTrail, 4, 4, new Vector3(1, 1, 1), Direction.Left);
+        SpawnStationary(triangle, new Vector2(0, 55), new Color(0, 0, 255), -4, 3, new Vector3(1, 1, 1));
+        SpawnWiper(hexagon, new Vector2(6, 55), new Color(0, 0, 255), Trail.HasTrail, 4, 4, new Vector3(1, 1, 1), Direction.Left);
     }
 }
