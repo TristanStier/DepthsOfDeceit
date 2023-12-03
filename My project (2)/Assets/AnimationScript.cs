@@ -74,10 +74,10 @@ public class AnimationScript : MonoBehaviour
         Destroy(s);
     }
 
-    public GameObject SpawnStationary(GameObject shape, Vector2 pos, Color col, int rotSpeed, int dur, Vector3 scale, float startRot=0f, float alpha=1f, bool hittable=true, string layer = "Minigame_Shapes", string trailLayer = "Minigame_Shapes_Trail") {
+    public GameObject SpawnStationary(GameObject shape, Vector2 pos, Color col, int rotSpeed, int dur, Vector3 scale, float startRot=0f, float alpha=1f, bool hittable=true, string layer = "Minigame_Shapes", string trailLayer = "Minigame_Shapes_Trail", bool warning=true) {
         pos.x = Mathf.Lerp(-10.5f, 6.5f, pos.x);
         pos.y = Mathf.Lerp(51.5f, 60.5f, pos.y);
-        GameObject s = Spawn(shape, pos, col, Trail.NoTrail, rotSpeed, 0, false, dur , 0, scale, alpha, hittable, startRot, layer, trailLayer, true);
+        GameObject s = Spawn(shape, pos, col, Trail.NoTrail, rotSpeed, 0, false, dur , 0, scale, alpha, hittable, startRot, layer, trailLayer, warning);
         return s;
     }
     public GameObject SpawnWiper(GameObject shape, float pos, Color col, Trail t, int rotSpeed, int moveSpeed, Vector3 scale, Direction dir, float startRot=0f, float alpha=1f, bool hittable=true, string layer="Minigame_Shapes", string trailLayer="Minigame_Shapes_Trail") {
@@ -105,13 +105,24 @@ public class AnimationScript : MonoBehaviour
         yield return new WaitForSeconds(2);
         SpawnWiper(hexagon, .2f, new Color(0, 0, 255), Trail.HasTrail, 4, 4, new Vector3(1, 1, 1), Direction.Right);
         yield return new WaitForSeconds(3);
-        SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 6, new Vector3(.5f, 30, 1));
-        yield return new WaitForSeconds(7);
+        //SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 6, new Vector3(.5f, 30, 1));
+        SpawnWiper(hexagon, .2f, new Color(0, 0, 255), Trail.HasTrail, 4, 4, new Vector3(1, 1, 1), Direction.Right);
+        SpawnWiper(hexagon, .4f, new Color(0, 0, 255), Trail.HasTrail, 4, 4, new Vector3(1, 1, 1), Direction.Right);
+        SpawnWiper(hexagon, .8f, new Color(0, 0, 255), Trail.HasTrail, 4, 4, new Vector3(1, 1, 1), Direction.Right);
+
+        // Background shapes
+        SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 11, new Vector3(.5f, 30, 1), startRot: 0, alpha: .01f, hittable: false, layer: "Minigame_Background_Shapes", warning: false);
+        SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 11, new Vector3(.5f, 30, 1), startRot: 90, alpha: .01f, hittable: false, layer: "Minigame_Background_Shapes", warning: false);
+        SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 11, new Vector3(.5f, 30, 1), startRot: 45, alpha: .01f, hittable: false, layer: "Minigame_Background_Shapes", warning: false);
+        SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 11, new Vector3(.5f, 30, 1), startRot: 135, alpha: .01f, hittable: false, layer: "Minigame_Background_Shapes", warning: false);
+
+        //yield return new WaitForSeconds(7);
         // MAKE SURE THAT ALL SHAPES ARE DESTROYED BEFORE ENDING THE MINIGAME!!!
-        /*while (true) {
+        for (int i = 0; i < 30; i++) {
             yield return new WaitForSeconds(.5f);
-            SpawnStationary(triangle, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), -4, 3, new Vector3(1, 1, 1));
-        }*/
+            SpawnStationary(triangle, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), -4, 2, new Vector3(1, 1, 1));
+        }
+        yield return new WaitForSeconds(5);
         lScript.endMinigame();
     }
 }
