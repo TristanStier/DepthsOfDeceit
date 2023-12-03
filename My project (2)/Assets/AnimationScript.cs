@@ -31,6 +31,7 @@ public class AnimationScript : MonoBehaviour
     public LogicScript lScript;
     public AudioSource lv1Music;
     public AudioSource lv2Music;
+    public AudioSource lv3Music;
 
     void Start() {
         lScript = logic.GetComponent<LogicScript>();
@@ -213,6 +214,14 @@ public class AnimationScript : MonoBehaviour
     {
         tempo = 0.521739130435f;
         yield return new WaitForSeconds(1);
+        lv3Music.Play();
+        
+        for (int i = 0; i < 12; i++)
+        {
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo / 2, new Vector3(10.47177f, -0.0464595f, 1));
+            yield return new WaitForSeconds(tempo);
+        }
+    
     }
 
 
