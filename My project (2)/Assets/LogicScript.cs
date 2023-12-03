@@ -22,6 +22,7 @@ public class LogicScript : MonoBehaviour
     public GameObject AnimationObj;
     public GameObject playerInstance;
     public GameObject collidedPlayer;
+    public IEnumerator currentLevel;
     public bool loaded = false;
     public Color invincibleColor = new Color(0, 200, 255);
     public Color regColor = new Color(255, 255, 255);
@@ -69,6 +70,7 @@ public class LogicScript : MonoBehaviour
 
     [ContextMenu("Game Over")] // add it to Unity
     public void endMinigame() {
+        StopCoroutine(currentLevel);
         collidedPlayer.GetComponentInChildren<Camera>().transform.position = previousCamPos;
         collidedPlayer.GetComponentInChildren<CameraFollow>().minigame = false;
         collidedPlayer.GetComponentInChildren<PlayerMovement>().minigame = false;
@@ -88,7 +90,8 @@ public class LogicScript : MonoBehaviour
         if (loaded) {
             return;
         }
-        StartCoroutine(animationScript.Level1());
+        currentLevel = animationScript.Level1();
+        StartCoroutine(currentLevel);
         taskBarGameObj.SetActive(false);
         collidedPlayer = player;
         previousCamPos = new Vector3(player.GetComponentInChildren<Camera>().transform.position.x,  player.GetComponentInChildren<Camera>().transform.position.y,  player.GetComponentInChildren<Camera>().transform.position.z);

@@ -31,14 +31,16 @@ public class AnimationScript : MonoBehaviour
         lScript = logic.GetComponent<LogicScript>();
     }
 
-    public GameObject Spawn(GameObject shape, Vector2 pos, Color col, Trail t, int rotSpeed, int moveSpeed, bool isWiper, int dur, Direction dir, Vector3 scale, string layer, string trailLayer, bool isWarning) {
+    public GameObject Spawn(GameObject shape, Vector2 pos, Color col, Trail t, int rotSpeed, int moveSpeed, bool isWiper, int dur, Direction dir, Vector3 scale, float alpha, bool hittable, float startRot, string layer, string trailLayer, bool isWarning) {
         GameObject s = Instantiate(shape);
         s.transform.position = pos;
+        s.transform.eulerAngles = new Vector3(0, 0, startRot);
         s.GetComponent<TrailRenderer>().emitting = (t == Trail.HasTrail);
         s.tag = "MinigameShape";
         s.GetComponent<Renderer>().sortingLayerID = SortingLayer.NameToID(layer);
         s.GetComponent<TrailRenderer>().sortingLayerID = SortingLayer.NameToID(trailLayer);
         SpriteRenderer sSprite = s.GetComponent<SpriteRenderer>();
+        col.a = alpha;
         sSprite.color = col;
         s.transform.localScale = scale;
         ShapeScript sScript = s.GetComponent<ShapeScript>();
@@ -53,7 +55,7 @@ public class AnimationScript : MonoBehaviour
             //sSprite.material.color.a = 1;
             StartCoroutine(SpawnWarning(sScript, sSprite, col));
         } else {
-            sScript.hittable = true;
+            sScript.hittable = hittable;
         }
         if (!isWiper) {
             StartCoroutine(DestroyAfterDuration(s, dur));
@@ -72,13 +74,13 @@ public class AnimationScript : MonoBehaviour
         Destroy(s);
     }
 
-    public GameObject SpawnStationary(GameObject shape, Vector2 pos, Color col, int rotSpeed, int dur, Vector3 scale, string layer = "Minigame_Shapes", string trailLayer = "Minigame_Shapes_Trail") {
+    public GameObject SpawnStationary(GameObject shape, Vector2 pos, Color col, int rotSpeed, int dur, Vector3 scale, float startRot=0f, float alpha=1f, bool hittable=true, string layer = "Minigame_Shapes", string trailLayer = "Minigame_Shapes_Trail") {
         pos.x = Mathf.Lerp(-10.5f, 6.5f, pos.x);
         pos.y = Mathf.Lerp(51.5f, 60.5f, pos.y);
-        GameObject s = Spawn(shape, pos, col, Trail.NoTrail, rotSpeed, 0, false, dur , 0, scale, layer, trailLayer, true);
+        GameObject s = Spawn(shape, pos, col, Trail.NoTrail, rotSpeed, 0, false, dur , 0, scale, alpha, hittable, startRot, layer, trailLayer, true);
         return s;
     }
-    public GameObject SpawnWiper(GameObject shape, float pos, Color col, Trail t, int rotSpeed, int moveSpeed, Vector3 scale, Direction dir, string layer="Minigame_Shapes", string trailLayer="Minigame_Shapes_Trail") {
+    public GameObject SpawnWiper(GameObject shape, float pos, Color col, Trail t, int rotSpeed, int moveSpeed, Vector3 scale, Direction dir, float startRot=0f, float alpha=1f, bool hittable=true, string layer="Minigame_Shapes", string trailLayer="Minigame_Shapes_Trail") {
         Vector2 fullPos;
         if (dir == Direction.Left) {
             pos = Mathf.Lerp(51.5f, 60.5f, pos);
@@ -93,20 +95,20 @@ public class AnimationScript : MonoBehaviour
             pos = Mathf.Lerp(-10.5f, 6.5f, pos);
             fullPos = new Vector2(pos, 49.5f);
         }
-        GameObject s = Spawn(shape, fullPos, col, t, rotSpeed, moveSpeed, true, 0, dir, scale, layer, trailLayer, false);
+        GameObject s = Spawn(shape, fullPos, col, t, rotSpeed, moveSpeed, true, 0, dir, scale, alpha, hittable, startRot, layer, trailLayer, false);
         return s;
     }
 
     public IEnumerator Level1() {
         yield return new WaitForSeconds(1);
-        SpawnStationary(triangle, new Vector2(.8f, .7f), new Color(0, 0, 255), -4, 3, new Vector3(1, 1, 1));
+        GameObject s = SpawnStationary(triangle, new Vector2(.8f, .7f), new Color(0, 0, 255), 0, 3, new Vector3(1, 1, 1), 270);
         yield return new WaitForSeconds(2);
         SpawnWiper(hexagon, .2f, new Color(0, 0, 255), Trail.HasTrail, 4, 4, new Vector3(1, 1, 1), Direction.Right);
         yield return new WaitForSeconds(6);
-        /*while (true) {
+        while (true) {
             yield return new WaitForSeconds(.5f);
             SpawnStationary(triangle, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), -4, 3, new Vector3(1, 1, 1));
-        }*/
+        }
         lScript.endMinigame();
     }
 }
