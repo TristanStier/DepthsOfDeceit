@@ -13,6 +13,7 @@ TagManager:
   - Shape
   - MinigamePlayer
   - MinigameTeleporter
+  - MinigameShape
   layers:
   - Default
   - TransparentFX
@@ -55,6 +56,9 @@ TagManager:
     locked: 0
   - name: Minigame_Background_Shapes
     uniqueID: 405540823
+    locked: 0
+  - name: Minigame_Shapes_Trail
+    uniqueID: 1684269967
     locked: 0
   - name: Minigame_Shapes
     uniqueID: 3480091121
