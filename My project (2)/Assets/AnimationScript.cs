@@ -24,13 +24,13 @@ public class AnimationScript : MonoBehaviour
 
     public GameObject circle, square, triangle, hexagon, rhombus, capsule, roundedSquare;
 
-    public GameObject Spawn(GameObject shape, Vector2 pos, Color col, Trail t, int rotSpeed, int moveSpeed, bool isWiper, Direction dir) {
+    public GameObject Spawn(GameObject shape, Vector2 pos, Color col, Trail t, int rotSpeed, int moveSpeed, bool isWiper, Direction dir, string layer, string trailLayer) {
         GameObject s = Instantiate(shape);
         s.transform.position = pos;
         s.GetComponent<TrailRenderer>().emitting = (t == Trail.HasTrail);
         s.tag = "MinigameShape";
-        s.GetComponent<Renderer>().sortingLayerID = SortingLayer.NameToID("Minigame_Shapes");
-        s.GetComponent<TrailRenderer>().sortingLayerID = SortingLayer.NameToID("Minigame_Shapes_Trail");
+        s.GetComponent<Renderer>().sortingLayerID = SortingLayer.NameToID(layer);
+        s.GetComponent<TrailRenderer>().sortingLayerID = SortingLayer.NameToID(trailLayer);
         s.GetComponent<SpriteRenderer>().color = col;
         ShapeScript sScript = s.GetComponent<ShapeScript>();
         sScript.rotationSpeed = rotSpeed;
@@ -42,6 +42,6 @@ public class AnimationScript : MonoBehaviour
     }
 
     public void level1() {
-        Spawn(square, new Vector2(10, 55), new Color(0, 0, 255), Trail.HasTrail, 2, 3, true, Direction.Left);
+        Spawn(square, new Vector2(0, 55), new Color(0, 0, 255), Trail.HasTrail, 2, 3, true, Direction.Up, "Minigame_Shapes", "Minigame_Shapes_Trail");
     }
 }
