@@ -2,7 +2,7 @@ using UnityEngine;
 using Photon.Pun;
 using System.Collections;
 
-public class SpawnPlayers : Photon.MonoBehaviour
+public class SpawnPlayers : MonoBehaviourPunCallbacks
 {
     public GameObject playerPrefab;
     public GameObject cameraPrefab;
@@ -11,7 +11,7 @@ public class SpawnPlayers : Photon.MonoBehaviour
     public float minX;
     public float maxX;
     public float minY;
-    public maxY;
+    public float maxY;
 
     void Start()
     {
