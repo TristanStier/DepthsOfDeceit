@@ -65,7 +65,9 @@ public class LogicScript : MonoBehaviourPunCallbacks
     [PunRPC]
     public void RpcStopSound(AudioSource audio)
     {
-        audio.Stop();
+        if (photonView.IsMine) {
+            audio.Stop();
+        }
     }
     [PunRPC]
     public void RpcPlaySound(AudioSource audio)
