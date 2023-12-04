@@ -111,9 +111,9 @@ public class LogicScript : MonoBehaviour
             return;
         }
 
-        currentLevel = animationScript.Level4();
+        currentLevel = animationScript.Level1();
 
-        int s = Random.Range(0, 3);
+        int s = Random.Range(0, 4);
         switch (s) {
             case 0:
                 currentLevel = animationScript.Level1();
@@ -128,7 +128,7 @@ public class LogicScript : MonoBehaviour
                 currentLevel = animationScript.Level4();
                 break;
             case 4:
-                //currentLevel = animationScript.Level5();
+                currentLevel = animationScript.Level5();
                 break;
         }
         playerArray = pArray;
