@@ -7,6 +7,7 @@ public class MinigameTPScript : MonoBehaviour
 {
 
     public LogicScript logic;
+    public List<GameObject> playerArray = new();
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,8 @@ public class MinigameTPScript : MonoBehaviour
     }
 
     public void OnTriggerEnter2D(Collider2D collision) {
-        if (!logic.loaded && collision.gameObject.CompareTag("Player")) {
+        if (!logic.loaded && collision.gameObject.CompareTag("Player") && !playerArray.Contains(collision.gameObject)) {
+            playerArray.Add(collision.gameObject);
             logic.beginMinigame(collision.gameObject);
         }
     }
