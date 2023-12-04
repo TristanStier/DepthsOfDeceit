@@ -92,7 +92,7 @@ public class LogicScript : MonoBehaviour
         if (loaded) {
             return;
         }
-        currentLevel = animationScript.Level1();
+        currentLevel = animationScript.CharlieLevel1();
         StartCoroutine(currentLevel);
         taskBarGameObj.SetActive(false);
         collidedPlayer = player;
