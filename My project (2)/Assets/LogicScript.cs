@@ -91,6 +91,11 @@ public class LogicScript : MonoBehaviour
             playerArray.Add(collidedPlayer);
             taskBarObj.value += 1;
         }
+        StartCoroutine(setUnLoaded()); // gives enough time for level to unload
+    }
+
+    private IEnumerator setUnLoaded() {
+        yield return new WaitForSeconds(1);
         loaded = false;
     }
 
