@@ -70,7 +70,26 @@ public class LogicScript : MonoBehaviour
     [PunRPC]
     public void RpcPlaySound(AudioSource audio)
     {
+<<<<<<< HEAD
         audio.Play();
+=======
+        if (photonView.IsMine) {
+            audio.Play();
+        }
+    }
+    [PunRPC]
+    public void RpcTaskBar(GameObject taskbarObj, bool enabled)
+    {
+        if (photonView.IsMine) {
+            taskBarObj.enabled = enabled;
+        }
+    }
+    /*public void isMine(Func<AudioSource> musicFunc, AudioSource music) {
+         if (photonView.IsMine)
+        {
+            photonView.RPC(musicFunc, music);
+        }
+>>>>>>> 78dd44ce74519877bed279b28009044838ad2aa3
     }*/
 
     [ContextMenu("Decrease Life")] // add it to Unity
