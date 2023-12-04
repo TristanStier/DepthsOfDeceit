@@ -127,7 +127,7 @@ public class LogicScript : MonoBehaviour
 
         currentLevel = animationScript.Level1();
 
-        int s = Random.Range(0, 5);
+        int s = Random.Range(0, 6);
 
         switch (s) {
             case 0:
