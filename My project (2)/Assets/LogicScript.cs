@@ -62,17 +62,29 @@ public class LogicScript : MonoBehaviour
         }
         
     }
+    [PunRPC]
+    public void RpcStopSound(AudioSource audio)
+    {
+        audio.Stop();
+    }
+    [PunRPC]
+    public void RpcPlaySound(AudioSource audio)
+    {
+        audio.Play();
+    }
 
     [ContextMenu("Decrease Life")] // add it to Unity
     public void decreaseLife(int num) {
         if (!playerScript.invulnerable && playerScript.lifePoints > 0) {
-            hit.Play();
+            //hit.Play();
+            RpcPlaySound(hit);
             playerScript.lifePoints -= num;
             decreaseLifeGui(playerScript.lifePoints);
             playerScript.StartCoroutine(playerScript.setInvulnerable());
             Debug.Log("Decreasing life " + playerScript.lifePoints);
         } else if (!playerScript.invulnerable && playerScript.lifePoints <= 0) {
-            hit.Play();
+            //hit.Play();
+            RpcPlaySound(hit);
             decreaseLifeGui(playerScript.lifePoints);
             endMinigame(false);
         }
@@ -81,7 +93,8 @@ public class LogicScript : MonoBehaviour
     [ContextMenu("Game Over")] // add it to Unity
     public void endMinigame(bool won) {
         StopCoroutine(currentLevel);
-        currentMusic.Stop();
+        //currentMusic.Stop();
+        RpcStopSound(currentMusic);
         collidedPlayer.GetComponentInChildren<Camera>().transform.position = previousCamPos;
         collidedPlayer.GetComponentInChildren<CameraFollow>().minigame = false;
         collidedPlayer.GetComponentInChildren<PlayerMovement>().minigame = false;
@@ -133,7 +146,9 @@ public class LogicScript : MonoBehaviour
                 break;
         }
         playerArray = pArray;
-        gameMusic.Stop();
+        //gameMusic.Stop();
+        RpcStopSound(gameMusic);
+        currentLevel = animationScript.Level1();
         StartCoroutine(currentLevel);
         //taskBarGameObj.SetActive(false);
         collidedPlayer = player;
