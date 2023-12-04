@@ -127,7 +127,7 @@ public class LogicScript : MonoBehaviour
 
         currentLevel = animationScript.Level1();
 
-        int s = Random.Range(0, 5);
+        int s = Random.Range(0, 6);
 
         switch (s) {
             case 0:
@@ -151,8 +151,8 @@ public class LogicScript : MonoBehaviour
         }
         playerArray = pArray;
 
-        //gameMusic.Stop();
-        RpcStopSound(gameMusic);
+        gameMusic.Stop();
+        //RpcStopSound(gameMusic);
         //currentLevel = animationScript.Level6();
 
         gameMusic.Stop();
