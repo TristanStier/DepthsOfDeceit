@@ -7,44 +7,37 @@ public class TeleportationZone : MonoBehaviourPun
     public string impostorTag = "Impostor";
 
     private bool impostorAssigned = false;
-    private int playersInsideCount = 0;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !impostorAssigned)
         {
-            playersInsideCount++;
-
-            if (playersInsideCount == PhotonNetwork.PlayerList.Length)
-            {
-                photonView.RPC("TeleportPlayers", RpcTarget.All);
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player") && !impostorAssigned)
-        {
-            playersInsideCount--;
+            photonView.RPC("TeleportPlayer", RpcTarget.All, other.GetComponent<PhotonView>().ViewID);
         }
     }
 
     [PunRPC]
-    private void TeleportPlayers()
+    private void TeleportPlayer(int playerViewID)
     {
+        GameObject player = PhotonView.Find(playerViewID).gameObject;
         GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
 
-        foreach (GameObject player in allPlayers)
+        if (allPlayers.Length >= 2)
         {
-            if (!impostorAssigned)
+            foreach (GameObject p in allPlayers)
             {
-                player.tag = impostorTag;
-                impostorAssigned = true;
-            }
+                if (p == player)
+                {
+                    if (!impostorAssigned)
+                    {
+                        p.tag = impostorTag;
+                        impostorAssigned = true;
+                    }
 
-            // Teleport all players to the destination
-            player.transform.position = destination.position;
+                    // Teleport the player to the destination
+                    p.transform.position = destination.position;
+                }
+            }
         }
     }
 }
