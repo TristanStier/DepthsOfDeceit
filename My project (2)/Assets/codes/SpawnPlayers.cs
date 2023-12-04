@@ -35,18 +35,19 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
         }
     }
 
-    IEnumerator WaitForPhotonView(GameObject player, int spriteIndex)
-    {
-        yield return new WaitUntil(() => player.GetComponent<PhotonView>().IsMine);
+IEnumerator WaitForPhotonView(GameObject player, int spriteIndex)
+{
+    PhotonView playerPhotonView = player.GetComponent<PhotonView>();
 
-        // Now it's safe to assign the sprite using an RPC
-        photonView.RPC("ChangeSprite", RpcTarget.AllBuffered, player.GetComponent<PhotonView>().ViewID, spriteIndex);
+    yield return new WaitUntil(() => playerPhotonView.IsMine);
 
-        // Instantiate the camera and set it as a child of the player
-        GameObject camera = Instantiate(cameraPrefab, player.transform);
-        camera.transform.localPosition = new Vector3(0f, 0f, camera.transform.localPosition.z);
-    }
+    // Now it's safe to assign the sprite using an RPC
+    playerPhotonView.RPC("ChangeSprite", RpcTarget.AllBuffered, playerPhotonView.ViewID, spriteIndex);
 
+    // Instantiate the camera and set it as a child of the player
+    GameObject camera = Instantiate(cameraPrefab, player.transform);
+    camera.transform.localPosition = new Vector3(0f, 0f, camera.transform.localPosition.z);
+}
     [PunRPC]
     void ChangeSprite(int viewID, int spriteIndex)
     {

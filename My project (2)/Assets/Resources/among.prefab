@@ -213,7 +213,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 2.25, y: 3.25}
+  m_Size: {x: 40, y: 80}
   m_Direction: 0
 --- !u!212 &1862357875069594404
 SpriteRenderer:
@@ -433,7 +433,7 @@ MonoBehaviour:
   - {x: 1.13, y: -1.5499954, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -151328
+  m_InstanceId: 69788
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1.13, y: 1.5499954, z: 0}
