@@ -91,15 +91,15 @@ public class LogicScript : MonoBehaviourPunCallbacks
     [ContextMenu("Decrease Life")] // add it to Unity
     public void decreaseLife(int num) {
         if (!playerScript.invulnerable && playerScript.lifePoints > 0) {
-            hit.Play();
-            //RpcPlaySound(hit);
+            //hit.Play();
+            photonView.RPC("RpcPlaySound", RpcTarget.All, hit);
             playerScript.lifePoints -= num;
             decreaseLifeGui(playerScript.lifePoints);
             playerScript.StartCoroutine(playerScript.setInvulnerable());
             Debug.Log("Decreasing life " + playerScript.lifePoints);
         } else if (!playerScript.invulnerable && playerScript.lifePoints <= 0) {
-            hit.Play();
-            //RpcPlaySound(hit);
+            //hit.Play();
+            photonView.RPC("RpcPlaySound", RpcTarget.All, hit);
             decreaseLifeGui(playerScript.lifePoints);
             endMinigame(false);
         }
@@ -108,7 +108,8 @@ public class LogicScript : MonoBehaviourPunCallbacks
     [ContextMenu("Game Over")] // add it to Unity
     public void endMinigame(bool won) {
         StopCoroutine(currentLevel);
-        currentMusic.Stop();
+        //currentMusic.Stop();
+        photonView.RPC("RpcStopSound", RpcTarget.All, currentMusic);
         //RpcStopSound(currentMusic);
         collidedPlayer.GetComponentInChildren<Camera>().transform.position = previousCamPos;
         collidedPlayer.GetComponentInChildren<CameraFollow>().minigame = false;
@@ -124,7 +125,8 @@ public class LogicScript : MonoBehaviourPunCallbacks
         /*if (taskBarObj.value == taskBarObj.maxValue) {
             Win(); // Win for crewmates
         }*/
-        gameMusic.Play();
+        //gameMusic.Play();
+        photonView.RPC("RpcPlaySound", RpcTarget.All, gameMusic);
     }
 
     private IEnumerator setUnLoaded() {
@@ -167,11 +169,8 @@ public class LogicScript : MonoBehaviourPunCallbacks
         }
         playerArray = pArray;
 
-        gameMusic.Stop();
-        //RpcStopSound(gameMusic);
-        //currentLevel = animationScript.Level6();
-
-        gameMusic.Stop();
+        //gameMusic.Stop();
+        photonView.RPC("RpcStopSound", RpcTarget.All, gameMusic);
         //RpcStopSound(gameMusic);
         currentLevel = animationScript.Level1();
 

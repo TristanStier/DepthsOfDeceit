@@ -692,7 +692,7 @@ public class AnimationScript : MonoBehaviour
 
         yield return new WaitForSeconds(tempo*16);
 
-        lv5Music.Stop();
+        //lv5Music.Stop();
         lScript.endMinigame(true);
     }
 
