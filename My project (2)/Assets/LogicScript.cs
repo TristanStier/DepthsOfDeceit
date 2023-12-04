@@ -34,9 +34,10 @@ public class LogicScript : MonoBehaviour
     void Start()
     {
         animationScript = animationObj.GetComponent<AnimationScript>();
-        GameObject player = PhotonView.Find(playerViewID).gameObject;
-        GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
-        taskBarObj.maxValue = allPlayers.Length * 2; // 2 minigames per player
+       // GameObject player = PhotonView.Find(playerViewID).gameObject;
+        //GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
+        taskBarObj.maxValue = PhotonNetwork.PlayerList.Length * 2; // 2 minigames per player
+        Debug.Log(taskBarObj.maxValue);
     }
 
     // Update is called once per frame
