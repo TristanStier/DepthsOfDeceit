@@ -4,7 +4,7 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LogicScript : MonoBehaviour
+public class LogicScript : MonoBehaviourPunCallbacks
 {
 
     private PlayerScript playerScript;
@@ -62,7 +62,7 @@ public class LogicScript : MonoBehaviour
         }
         
     }
-    /*[PunRPC]
+    [PunRPC]
     public void RpcStopSound(AudioSource audio)
     {
         audio.Stop();
@@ -70,9 +70,6 @@ public class LogicScript : MonoBehaviour
     [PunRPC]
     public void RpcPlaySound(AudioSource audio)
     {
-<<<<<<< HEAD
-        audio.Play();
-=======
         if (photonView.IsMine) {
             audio.Play();
         }
@@ -89,7 +86,6 @@ public class LogicScript : MonoBehaviour
         {
             photonView.RPC(musicFunc, music);
         }
->>>>>>> 78dd44ce74519877bed279b28009044838ad2aa3
     }*/
 
     [ContextMenu("Decrease Life")] // add it to Unity
