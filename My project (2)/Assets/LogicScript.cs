@@ -173,7 +173,7 @@ public class LogicScript : MonoBehaviourPunCallbacks
 
         gameMusic.Stop();
         //RpcStopSound(gameMusic);
-        //currentLevel = animationScript.Level5();
+        currentLevel = animationScript.Level1();
 
         StartCoroutine(currentLevel);
         //taskBarGameObj.SetActive(false);

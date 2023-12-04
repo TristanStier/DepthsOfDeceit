@@ -46,6 +46,7 @@ MonoBehaviour:
   - RpcPlaySound
   - RpcStopSound
   - ChangeSprite
+  - RpcTaskBar
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
