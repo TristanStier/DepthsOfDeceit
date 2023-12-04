@@ -145,7 +145,7 @@ public class AnimationScript : MonoBehaviour
      public IEnumerator Level1() {
         yield return new WaitForSeconds(1);
         lScript.currentMusic = lv1Music;
-        lv1Music.Play();
+        //lv1Music.Play();
         //lScript.RpcPlaySound(lv1Music);
         for (int i = 0; i < 29; i++) {
             yield return new WaitForSeconds(.3f);
@@ -189,7 +189,7 @@ public class AnimationScript : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         //lScript.RpcStopSound(lv1Music);
-        lv1Music.Stop();
+        //lv1Music.Stop();
         lScript.endMinigame(true);
     }
 
