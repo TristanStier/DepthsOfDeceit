@@ -140,7 +140,7 @@ public class AnimationScript : MonoBehaviour
         lv1Music.Stop();
         lScript.endMinigame(true);
     }*/
-    
+
      public IEnumerator Level1() {
         yield return new WaitForSeconds(1);
         lScript.currentMusic = lv1Music;
