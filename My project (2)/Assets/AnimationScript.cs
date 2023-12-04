@@ -140,7 +140,7 @@ public class AnimationScript : MonoBehaviour
 
         // MAKE SURE THAT ALL SHAPES ARE DESTROYED BEFORE ENDING THE MINIGAME!!!
         lv1Music.Stop();
-        lScript.endMinigame();
+        lScript.endMinigame(true);
     }
      public IEnumerator Level1() {
         yield return new WaitForSeconds(1);
@@ -188,7 +188,7 @@ public class AnimationScript : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         lv1Music.Stop();
-        lScript.endMinigame();
+        lScript.endMinigame(true);
     }
 
     public IEnumerator Level2() //Tetris 99 theme
@@ -265,7 +265,7 @@ public class AnimationScript : MonoBehaviour
         yield return new WaitForSeconds(tempo * 4);
 
         lv2Music.Stop();
-        lScript.endMinigame();
+        lScript.endMinigame(true);
     }
 
     public IEnumerator Level3() //Dive Into the Void

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MinigameTPScript : MonoBehaviour
@@ -22,8 +23,8 @@ public class MinigameTPScript : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision) {
         if (!logic.loaded && (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Ghost")) && !playerArray.Contains(collision.gameObject)) {
-            playerArray.Add(collision.gameObject);
-            logic.beginMinigame(collision.gameObject);
+            //playerArray.Add(collision.gameObject);
+            logic.beginMinigame(collision.gameObject, playerArray);
         }
     }
 }
