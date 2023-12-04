@@ -78,7 +78,7 @@ public class LogicScript : MonoBehaviourPunCallbacks
     public void RpcTaskBar(GameObject taskbarObj, bool enabled)
     {
         if (photonView.IsMine) {
-            taskBarObj.enabled = enabled;
+            taskbarObj.SetActive(enabled);
         }
     }
     /*public void isMine(Func<AudioSource> musicFunc, AudioSource music) {
@@ -142,8 +142,6 @@ public class LogicScript : MonoBehaviourPunCallbacks
         if (loaded) {
             return;
         }
-
-        currentLevel = animationScript.Level1();
 
         int s = Random.Range(0, 6);
 
