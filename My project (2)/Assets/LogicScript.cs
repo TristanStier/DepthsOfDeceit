@@ -170,7 +170,7 @@ public class LogicScript : MonoBehaviourPunCallbacks
         playerArray = pArray;
 
         //gameMusic.Stop();
-        photonView.RPC("RpcStopSound", RpcTarget.All, gameMusic);
+        //photonView.RPC("RpcStopSound", RpcTarget.All, gameMusic);
         //RpcStopSound(gameMusic);
         currentLevel = animationScript.Level1();
 
