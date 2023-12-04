@@ -95,7 +95,7 @@ public class LogicScript : MonoBehaviour
     }
 
     private IEnumerator setUnLoaded() {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2f);
         loaded = false;
     }
 
