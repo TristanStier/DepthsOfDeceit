@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
-using Photon.Pun.Demo.SlotRacer;
-using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,7 +38,7 @@ public class LogicScript : MonoBehaviour
         animationScript = animationObj.GetComponent<AnimationScript>();
        // GameObject player = PhotonView.Find(playerViewID).gameObject;
         //GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
-        taskBarObj.maxValue = PhotonNetwork.PlayerList.Length * 2; // 2 minigames per player
+        taskBarObj.maxValue = (PhotonNetwork.PlayerList.Length-1) * 2; // 2 minigames per player
         //taskBarObj.maxValue = 2;
         //Debug.Log(taskBarObj.maxValue);
     }
