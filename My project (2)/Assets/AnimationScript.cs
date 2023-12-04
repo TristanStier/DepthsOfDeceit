@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using static UnityEditor.PlayerSettings;
+using UnityEngine.UIElements;
 
 public class AnimationScript : MonoBehaviour
 {
+    public float tempo; //seconds per beat
     public enum Trail {
         HasTrail,
         NoTrail
@@ -26,8 +29,10 @@ public class AnimationScript : MonoBehaviour
     public GameObject circle, square, triangle, hexagon, rhombus, capsule, roundedSquare;
     public GameObject logic;
     public LogicScript lScript;
-    public AudioSource lv1Music;
     public List<GameObject> shapesArray = new();
+    public AudioSource lv1Music;
+    public AudioSource lv2Music;
+    public AudioSource lv3Music;
 
     void Start() {
         lScript = logic.GetComponent<LogicScript>();
@@ -137,7 +142,7 @@ public class AnimationScript : MonoBehaviour
         lv1Music.Stop();
         lScript.endMinigame();
     }
-    public IEnumerator CharlieLevel1() {
+     public IEnumerator CharlieLevel1() {
         yield return new WaitForSeconds(1);
         lScript.currentMusic = lv1Music;
         lv1Music.Play();
@@ -198,4 +203,96 @@ public class AnimationScript : MonoBehaviour
         lv1Music.Stop();
         lScript.endMinigame();
     }
+
+    public IEnumerator Level2() //Tetris 99 theme
+    {
+        tempo = 0.428571428571f;
+        yield return new WaitForSeconds(1);
+        lv2Music.Play();
+        for (int j = 0; j < 2; j++) {
+            for (int i = 0; i < 14; i++)
+            {
+                SpawnStationary(square, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo / 2, new Vector3(1, 1, 1));
+                yield return new WaitForSeconds(tempo);
+            }
+
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo / 2, new Vector3(1, 1, 1));
+            yield return new WaitForSeconds(tempo / 2);
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo / 2, new Vector3(1, 1, 1));
+            yield return new WaitForSeconds(tempo / 2);
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo / 2, new Vector3(1, 1, 1));
+            yield return new WaitForSeconds(tempo / 2);
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo / 2, new Vector3(1, 1, 1));
+            yield return new WaitForSeconds(tempo / 2);
+        }
+
+        for (int j = 0; j < 2; j++)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                SpawnStationary(square, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo / 2, new Vector3(1, 1, 1));
+                yield return new WaitForSeconds(tempo);
+                SpawnStationary(square, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo / 2, new Vector3(1, 1, 1));
+                yield return new WaitForSeconds(tempo/2);
+                SpawnStationary(square, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo / 2, new Vector3(1, 1, 1));
+                yield return new WaitForSeconds(tempo/2);
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                SpawnStationary(square, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo / 2, new Vector3(1, 1, 1));
+                yield return new WaitForSeconds(tempo);
+            }
+
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo / 2, new Vector3(1, 1, 1));
+            yield return new WaitForSeconds(tempo / 2);
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo / 2, new Vector3(1, 1, 1));
+            yield return new WaitForSeconds(tempo / 2);
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo / 2, new Vector3(1, 1, 1));
+            yield return new WaitForSeconds(tempo / 2);
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo / 2, new Vector3(1, 1, 1));
+            yield return new WaitForSeconds(tempo / 2);
+        }
+
+        yield return new WaitForSeconds(tempo);
+        for (int i = 0; i < 3; i++)
+        {
+            SpawnWiper(square, Random.Range(0f, 1f), new Color(0, 0, 255), Trail.NoTrail, 0, 8, new Vector3(10.47177f, -0.0464595f, 1), Direction.Right);
+            yield return new WaitForSeconds(tempo*2);
+            SpawnWiper(square, Random.Range(0f, 1f), new Color(0, 0, 255), Trail.NoTrail, 0, 8, new Vector3(-0.0464595f, 10.47177f, 1), Direction.Down);
+            yield return new WaitForSeconds(tempo * 2);
+            SpawnWiper(square, Random.Range(0f, 1f), new Color(0, 0, 255), Trail.NoTrail, 0, 8, new Vector3(10.47177f, -0.0464595f, 1), Direction.Left);
+            yield return new WaitForSeconds(tempo * 2);
+            SpawnWiper(square, Random.Range(0f, 1f), new Color(0, 0, 255), Trail.NoTrail, 0, 8, new Vector3(-0.0464595f, 10.47177f, 1), Direction.Up);
+            yield return new WaitForSeconds(tempo * 2);
+        }
+
+        SpawnWiper(square, Random.Range(0f, 1f), new Color(0, 0, 255), Trail.NoTrail, 0, 8, new Vector3(10.47177f, -0.0464595f, 1), Direction.Right);
+        yield return new WaitForSeconds(tempo);
+        SpawnWiper(square, Random.Range(0f, 1f), new Color(0, 0, 255), Trail.NoTrail, 0, 8, new Vector3(-0.0464595f, 10.47177f, 1), Direction.Down);
+        yield return new WaitForSeconds(tempo);
+        SpawnWiper(square, Random.Range(0f, 1f), new Color(0, 0, 255), Trail.NoTrail, 0, 8, new Vector3(-0.0464595f, 10.47177f, 1), Direction.Up);
+        yield return new WaitForSeconds(tempo * 2);
+        SpawnWiper(square, Random.Range(0f, 1f), new Color(0, 0, 255), Trail.NoTrail, 0, 8, new Vector3(- 0.0464595f, 10.47177f, 1), Direction.Down);
+        yield return new WaitForSeconds(tempo * 4);
+
+        lv2Music.Stop();
+        lScript.endMinigame();
+    }
+
+    public IEnumerator Level3() //Dive Into the Void
+    {
+        tempo = 0.521739130435f;
+        yield return new WaitForSeconds(1);
+        lv3Music.Play();
+        
+        for (int i = 0; i < 12; i++)
+        {
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo / 2, new Vector3(10.47177f, -0.0464595f, 1));
+            yield return new WaitForSeconds(tempo);
+        }
+    
+    }
+
+
 }
