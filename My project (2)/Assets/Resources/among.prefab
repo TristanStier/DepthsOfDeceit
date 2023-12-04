@@ -68,7 +68,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 0
+  sceneViewId: 3
   InstantiationId: 1001
   isRuntimeInstantiated: 1
 --- !u!50 &4859833478567539317
@@ -147,7 +147,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.55606353, y: -30.760487, z: 0}
-  m_LocalScale: {x: 0.04, y: 0.04, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 543717125834300560}
@@ -213,7 +213,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 40, y: 70}
+  m_Size: {x: 10, y: 18}
   m_Direction: 0
 --- !u!212 &1862357875069594404
 SpriteRenderer:
@@ -256,12 +256,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 3a91671faf4c44f37a11ab82b824f055, type: 3}
-  m_Color: {r: 0.8196079, g: 0.9058824, b: 0.7803922, a: 1}
+  m_Sprite: {fileID: 21300000, guid: e218143ce5afc4456b882fe636f88f43, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.18, y: 1.51}
+  m_Size: {x: 2.26, y: 3.1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -308,7 +308,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6116955123585931411}
-  sceneViewId: 0
+  sceneViewId: 4
   InstantiationId: 1001
   isRuntimeInstantiated: 1
 --- !u!114 &6116955123585931411
@@ -433,7 +433,7 @@ MonoBehaviour:
   - {x: 1.13, y: -1.5499954, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 69788
+  m_InstanceId: -6540
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1.13, y: 1.5499954, z: 0}
