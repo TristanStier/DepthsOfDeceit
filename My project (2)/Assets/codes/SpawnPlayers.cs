@@ -2,7 +2,7 @@ using UnityEngine;
 using Photon.Pun;
 using System.Collections;
 
-public class SpawnPlayers : MonoBehaviour
+public class SpawnPlayers : MonoBehaviourPun
 {
     public GameObject playerPrefab;
     public GameObject cameraPrefab;
@@ -39,11 +39,21 @@ public class SpawnPlayers : MonoBehaviour
     {
         yield return new WaitUntil(() => player.GetComponent<PhotonView>().IsMine);
 
-        // Now it's safe to assign the sprite
-        player.GetComponent<SpriteRenderer>().sprite = playerSprites[spriteIndex];
+        // Now it's safe to assign the sprite using an RPC
+        photonView.RPC("ChangeSprite", RpcTarget.AllBuffered, player.GetComponent<PhotonView>().ViewID, spriteIndex);
 
         // Instantiate the camera and set it as a child of the player
         GameObject camera = Instantiate(cameraPrefab, player.transform);
         camera.transform.localPosition = new Vector3(0f, 0f, camera.transform.localPosition.z);
+    }
+
+    [PunRPC]
+    void ChangeSprite(int viewID, int spriteIndex)
+    {
+        PhotonView pv = PhotonView.Find(viewID);
+        if (pv != null)
+        {
+            pv.gameObject.GetComponent<SpriteRenderer>().sprite = playerSprites[spriteIndex];
+        }
     }
 }

@@ -22,7 +22,7 @@ public class TeleportationZone : MonoBehaviourPun
         GameObject player = PhotonView.Find(playerViewID).gameObject;
         GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
 
-        if (allPlayers.Length >= 1)
+        if (allPlayers.Length >= 2)
         {
             foreach (GameObject p in allPlayers)
             {

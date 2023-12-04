@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_InstanceId
       value: -1282
       objectReference: {fileID: 0}
+    - target: {fileID: 473760445569149826, guid: 6ed6efb8fe7422e48b54ed03700fc725, type: 3}
+      propertyPath: killCooldown
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 473760445569149826, guid: 6ed6efb8fe7422e48b54ed03700fc725, type: 3}
+      propertyPath: killDistance
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1662125829490340591, guid: 6ed6efb8fe7422e48b54ed03700fc725, type: 3}
       propertyPath: sceneViewId
       value: 0
