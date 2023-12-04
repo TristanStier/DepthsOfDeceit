@@ -70,6 +70,13 @@ public class LogicScript : MonoBehaviourPunCallbacks //MonoBehaviour
             audio.Play();
         }
     }
+    [PunRPC]
+    public void RpcTaskBar(GameObject taskbarObj, bool enabled)
+    {
+        if (photonView.IsMine) {
+            taskBarObj.enabled = enabled;
+        }
+    }
     /*public void isMine(Func<AudioSource> musicFunc, AudioSource music) {
          if (photonView.IsMine)
         {
