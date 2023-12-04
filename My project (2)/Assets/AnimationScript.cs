@@ -1,11 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
-using static UnityEditor.PlayerSettings;
-using UnityEngine.UIElements;
-using static UnityEngine.Rendering.DebugUI;
 
 public class AnimationScript : MonoBehaviour
 {
@@ -116,7 +111,7 @@ public class AnimationScript : MonoBehaviour
         return s;
     }
 
-    public IEnumerator LevelTest() {
+    /*public IEnumerator LevelTest() {
         yield return new WaitForSeconds(1);
         lScript.currentMusic = lv1Music;
         lv1Music.Play();
@@ -144,11 +139,13 @@ public class AnimationScript : MonoBehaviour
         // MAKE SURE THAT ALL SHAPES ARE DESTROYED BEFORE ENDING THE MINIGAME!!!
         lv1Music.Stop();
         lScript.endMinigame(true);
-    }
+    }*/
+    
      public IEnumerator Level1() {
         yield return new WaitForSeconds(1);
         lScript.currentMusic = lv1Music;
-        lv1Music.Play();
+        //lv1Music.Play();
+        lScript.RpcPlaySound(lv1Music);
         for (int i = 0; i < 29; i++) {
             yield return new WaitForSeconds(.3f);
             int s = Random.Range(-3, 3);
@@ -190,7 +187,7 @@ public class AnimationScript : MonoBehaviour
         SpawnWiper(triangle, .5f, new Color(0, 0, 1), Trail.NoTrail, 2, 12, new Vector3(5, 5, 1), Direction.Up);
         yield return new WaitForSeconds(2f);
 
-        lv1Music.Stop();
+        lScript.RpcStopSound(lv1Music);
         lScript.endMinigame(true);
     }
 
@@ -417,6 +414,7 @@ public class AnimationScript : MonoBehaviour
     {
         tempo = 0.365853658537f;
         lScript.currentMusic = lv4Music;
+        lv4Music.Play();
 
 
         SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo / 4, new Vector3(-0.2464595f, 50.47177f, 1));

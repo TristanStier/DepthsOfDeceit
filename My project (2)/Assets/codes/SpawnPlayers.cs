@@ -24,6 +24,7 @@ public class SpawnPlayers : MonoBehaviour
 
             // Instantiate the player
             GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
+            player.tag = "Player";
 
             // Wait until the PhotonView is ready
             StartCoroutine(WaitForPhotonView(player, spriteIndex));

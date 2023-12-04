@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
-using Photon.Pun.Demo.SlotRacer;
-using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,6 +28,8 @@ public class LogicScript : MonoBehaviour
     public Color regColor = new Color(255, 255, 255);
     public Vector3 previousCamPos;
 
+    public AudioSource gameMusic;
+
     public List<GameObject> playerArray;
 
     // Start is called before the first frame update
@@ -38,7 +38,7 @@ public class LogicScript : MonoBehaviour
         animationScript = animationObj.GetComponent<AnimationScript>();
        // GameObject player = PhotonView.Find(playerViewID).gameObject;
         //GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
-        taskBarObj.maxValue = PhotonNetwork.PlayerList.Length * 2; // 2 minigames per player
+        taskBarObj.maxValue = (PhotonNetwork.PlayerList.Length-1) * 2; // 2 minigames per player
         //taskBarObj.maxValue = 2;
         //Debug.Log(taskBarObj.maxValue);
     }
@@ -62,17 +62,29 @@ public class LogicScript : MonoBehaviour
         }
         
     }
+    [PunRPC]
+    public void RpcStopSound(AudioSource audio)
+    {
+        audio.Stop();
+    }
+    [PunRPC]
+    public void RpcPlaySound(AudioSource audio)
+    {
+        audio.Play();
+    }
 
     [ContextMenu("Decrease Life")] // add it to Unity
     public void decreaseLife(int num) {
         if (!playerScript.invulnerable && playerScript.lifePoints > 0) {
-            hit.Play();
+            //hit.Play();
+            RpcPlaySound(hit);
             playerScript.lifePoints -= num;
             decreaseLifeGui(playerScript.lifePoints);
             playerScript.StartCoroutine(playerScript.setInvulnerable());
             Debug.Log("Decreasing life " + playerScript.lifePoints);
         } else if (!playerScript.invulnerable && playerScript.lifePoints <= 0) {
-            hit.Play();
+            //hit.Play();
+            RpcPlaySound(hit);
             decreaseLifeGui(playerScript.lifePoints);
             endMinigame(false);
         }
@@ -81,12 +93,13 @@ public class LogicScript : MonoBehaviour
     [ContextMenu("Game Over")] // add it to Unity
     public void endMinigame(bool won) {
         StopCoroutine(currentLevel);
-        currentMusic.Stop();
+        //currentMusic.Stop();
+        RpcStopSound(currentMusic);
         collidedPlayer.GetComponentInChildren<Camera>().transform.position = previousCamPos;
         collidedPlayer.GetComponentInChildren<CameraFollow>().minigame = false;
         collidedPlayer.GetComponentInChildren<PlayerMovement>().minigame = false;
         Destroy(playerInstance);
-        taskBarGameObj.SetActive(true);
+        //taskBarGameObj.SetActive(true);
         if (won) {
             playerArray.Add(collidedPlayer);
             taskBarObj.value += 1;
@@ -95,6 +108,7 @@ public class LogicScript : MonoBehaviour
         /*if (taskBarObj.value == taskBarObj.maxValue) {
             Win(); // Win for crewmates
         }*/
+        gameMusic.Play();
     }
 
     private IEnumerator setUnLoaded() {
@@ -113,7 +127,8 @@ public class LogicScript : MonoBehaviour
 
         currentLevel = animationScript.Level1();
 
-        int s = Random.Range(0, 4);
+        int s = Random.Range(0, 4); // exclusive
+
         switch (s) {
             case 0:
                 currentLevel = animationScript.Level1();
@@ -132,9 +147,11 @@ public class LogicScript : MonoBehaviour
                 break;
         }
         playerArray = pArray;
-
+        //gameMusic.Stop();
+        RpcStopSound(gameMusic);
+        currentLevel = animationScript.Level1();
         StartCoroutine(currentLevel);
-        taskBarGameObj.SetActive(false);
+        //taskBarGameObj.SetActive(false);
         collidedPlayer = player;
         previousCamPos = new Vector3(player.GetComponentInChildren<Camera>().transform.position.x,  player.GetComponentInChildren<Camera>().transform.position.y,  player.GetComponentInChildren<Camera>().transform.position.z);
         player.GetComponentInChildren<Camera>().transform.position = new Vector3(-2, 56.1f,  player.GetComponentInChildren<Camera>().transform.position.z);

@@ -1,10 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using Unity.VisualScripting;
-using Unity.VisualScripting.ReorderableList.Element_Adder_Menu;
 using UnityEngine;
-using UnityEngine.Timeline;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -18,7 +13,7 @@ public class PlayerScript : MonoBehaviour
     public float dashPower = 10f;
     public float dashTime = 0.2f;
     public float dashCooldown = 0.1f;
-    private Direction[] d = {Direction.Right, Direction.None}; 
+    //private Direction[] d = {Direction.Right, Direction.None}; 
     
     public Sprite spriteLeft;
     public Sprite spriteRight;
@@ -46,34 +41,34 @@ public class PlayerScript : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
 
         if (movement.x < 0 && movement.y == 0) {
-            d[0] = Direction.Left;
-            d[1] = Direction.None;
+            //d[0] = Direction.Left;
+            //d[1] = Direction.None;
             gameObject.GetComponent<SpriteRenderer>().sprite = spriteLeft;
         } else if (movement.x > 0 && movement.y == 0) {
-            d[0] = Direction.Right;
-            d[1] = Direction.None;
+            //d[0] = Direction.Right;
+            //d[1] = Direction.None;
             gameObject.GetComponent<SpriteRenderer>().sprite = spriteRight;
         } else if (movement.y < 0 && movement.x == 0) {
-            d[0] = Direction.None;
-            d[1] = Direction.Up;
+            //d[0] = Direction.None;
+            //d[1] = Direction.Up;
         } else if (movement.y > 0 && movement.x == 0) {
-            d[0] = Direction.None;
-            d[1] = Direction.Down;
+            //d[0] = Direction.None;
+            //d[1] = Direction.Down;
         } else if (movement.y < 0 && movement.x < 0) {
-            d[0] = Direction.Left;
-            d[1] = Direction.Up;
+            //d[0] = Direction.Left;
+            //d[1] = Direction.Up;
             gameObject.GetComponent<SpriteRenderer>().sprite = spriteLeft;
         } else if (movement.y < 0 && movement.x > 0) {
-            d[0] = Direction.Right;
-            d[1] = Direction.Up;
+            //d[0] = Direction.Right;
+            //d[1] = Direction.Up;
              gameObject.GetComponent<SpriteRenderer>().sprite = spriteRight;
         } else if (movement.y > 0 && movement.x < 0) {
-            d[0] = Direction.Left;
-            d[1] = Direction.Down;
+            //d[0] = Direction.Left;
+            //d[1] = Direction.Down;
             gameObject.GetComponent<SpriteRenderer>().sprite = spriteLeft;
         } else if (movement.y > 0 && movement.x > 0) {
-            d[0] = Direction.Right;
-            d[1] = Direction.Down;
+            //d[0] = Direction.Right;
+            //d[1] = Direction.Down;
             gameObject.GetComponent<SpriteRenderer>().sprite = spriteRight;
         }
 

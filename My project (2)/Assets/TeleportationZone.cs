@@ -10,15 +10,14 @@ public class TeleportationZone : MonoBehaviourPun
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !impostorAssigned)
+        if (other.CompareTag("Player"))
         {
             photonView.RPC("TeleportPlayer", RpcTarget.All, other.GetComponent<PhotonView>().ViewID);
-
         }
     }
 
     [PunRPC]
-    private void TeleportPlayer(int playerViewID, int playerSpriteIndex)
+    private void TeleportPlayer(int playerViewID)
     {
         GameObject player = PhotonView.Find(playerViewID).gameObject;
         GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
@@ -29,7 +28,7 @@ public class TeleportationZone : MonoBehaviourPun
             {
                 if (p == player)
                 {
-                    if (p == allPlayers[playerSpriteIndex] && !impostorAssigned)
+                    if (!impostorAssigned)
                     {
                         p.tag = impostorTag;
                         impostorAssigned = true;
