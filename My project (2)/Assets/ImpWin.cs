@@ -9,6 +9,11 @@ public class ImpWin : MonoBehaviourPunCallbacks
     private void Start()
     {
         photonView = GetComponent<PhotonView>();
+
+        if (photonView == null)
+        {
+            Debug.LogError("PhotonView component is missing on the GameObject with ImpWin script.");
+        }
     }
 
     private void Update()
@@ -20,17 +25,24 @@ public class ImpWin : MonoBehaviourPunCallbacks
     // Check if the impostors outnumber the players
     private void CheckWinConditions()
     {
+        if (photonView == null)
+        {
+            // Log an error and return if photonView is null
+            Debug.LogError("PhotonView is null in CheckWinConditions method.");
+            return;
+        }
+
         int impostors = 0;
         int players = 0;
 
         // Count players and impostors
-        foreach (PhotonView photonView in PhotonNetwork.PhotonViews)
+        foreach (PhotonView pv in PhotonNetwork.PhotonViews)
         {
-            if (photonView.IsMine)
+            if (pv.IsMine)
             {
-                if (photonView.gameObject.CompareTag("Player"))
+                if (pv.gameObject.CompareTag("Player"))
                     players++;
-                else if (photonView.gameObject.CompareTag("Impostor"))
+                else if (pv.gameObject.CompareTag("Impostor"))
                     impostors++;
             }
         }

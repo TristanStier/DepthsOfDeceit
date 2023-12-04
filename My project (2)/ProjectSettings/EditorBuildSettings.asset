@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 1816f930baa4efb4994a54f00dfe84da
   - enabled: 1
-    path: Assets/Scenes/box 1.unity
+    path: Assets/Scenes/box.unity
     guid: e0ed621cbb36f42cd84650ef21a23490
   - enabled: 1
     path: Assets/Scenes/ImpostorWin.unity

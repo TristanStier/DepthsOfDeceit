@@ -15,7 +15,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         // Check if the room name is not empty
         if (!string.IsNullOrEmpty(createInput.text))
         {
-            RoomOptions roomOptions = new RoomOptions { MaxPlayers = 4 }; // You can customize this based on your requirements
+            RoomOptions roomOptions = new RoomOptions { MaxPlayers = 10 }; // You can customize this based on your requirements
             PhotonNetwork.CreateRoom(createInput.text, roomOptions);
         }
         else
@@ -39,6 +39,6 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.LoadLevel("box 1");
+        PhotonNetwork.LoadLevel("box");
     }
 }
