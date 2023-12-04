@@ -129,7 +129,6 @@ public class LogicScript : MonoBehaviour
                 break;
         }
         playerArray = pArray;
-        currentLevel = animationScript.Level1();
         gameMusic.Stop();
         StartCoroutine(currentLevel);
         taskBarGameObj.SetActive(false);
