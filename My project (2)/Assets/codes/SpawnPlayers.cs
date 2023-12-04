@@ -2,7 +2,7 @@ using UnityEngine;
 using Photon.Pun;
 using System.Collections;
 
-public class SpawnPlayers : MonoBehaviourPunCallbacks
+public class SpawnPlayers : MonoBehaviourPun
 {
     public GameObject playerPrefab;
     public GameObject cameraPrefab;
