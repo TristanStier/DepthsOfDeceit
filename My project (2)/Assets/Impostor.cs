@@ -37,6 +37,7 @@ public class Impostor : MonoBehaviourPunCallbacks
             }
         }
     }
+    
 
     [PunRPC]
     void KillRPC(int targetViewID)

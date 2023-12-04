@@ -5,7 +5,7 @@ public class TeleportationZone : MonoBehaviourPun
 {
     public Transform destination; // Assign the destination object in the Inspector
     public string impostorTag = "Impostor";
-
+    public int minimum= 1;
     private bool impostorAssigned = false;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -22,7 +22,7 @@ public class TeleportationZone : MonoBehaviourPun
         GameObject player = PhotonView.Find(playerViewID).gameObject;
         GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
 
-        if (allPlayers.Length >= 2)
+        if (allPlayers.Length >= minimum)
         {
             foreach (GameObject p in allPlayers)
             {
