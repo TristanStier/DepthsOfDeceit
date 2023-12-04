@@ -141,7 +141,7 @@ public class LogicScript : MonoBehaviourPunCallbacks
     }
 
   public void beginMinigame(GameObject player, List<GameObject> pArray) {
-    if (player == null || loaded) {
+    if (loaded) {
         return;
     }
 
