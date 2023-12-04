@@ -133,12 +133,12 @@ public class AnimationScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         lScript.currentMusic = lv1Music;
         lv1Music.Play();
-        for (int i = 0; i < 22; i++) {
-            yield return new WaitForSeconds(.4f);
+        for (int i = 0; i < 29; i++) {
+            yield return new WaitForSeconds(.3f);
             SpawnStationary(triangle, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), Random.Range(-3, 3), 2, new Vector3(1, 1, 1));
         }
-        for (int i = 0; i < 25; i++) {
-            yield return new WaitForSeconds(.4f);
+        for (int i = 0; i < 33; i++) {
+            yield return new WaitForSeconds(.3f);
             SpawnStationary(hexagon, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), Random.Range(-3, 3), 2, new Vector3(1, 1, 1));
         }
         SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 21, new Vector3(.5f, 30, 1), startRot: 0, alpha: .01f, hittable: false, layer: "Minigame_Background_Shapes", warning: false);
@@ -155,13 +155,15 @@ public class AnimationScript : MonoBehaviour
         SpawnWiper(hexagon, .6f, new Color(0, 0, 255), Trail.HasTrail, 4, 4, new Vector3(1, 1, 1), Direction.Right);
         SpawnWiper(hexagon, .9f, new Color(0, 0, 255), Trail.HasTrail, 4, 3, new Vector3(1, 1, 1), Direction.Right);
         for (int i = 0; i < 6; i++) {
-            float s = Random.Range(3, 6);
+            float s = Random.Range(5, 8);
             yield return new WaitForSeconds(1.2f);
             SpawnStationary(circle, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, .8f, new Vector3(s, s, 0));
             //yield return new WaitForSeconds(1f);
         }
         SpawnWiper(square, .8f, new Color(0, 0, .4f), Trail.NoTrail, 1, 15, new Vector3(6, 6, 1), Direction.Right, layer: "Minigame_Foreground_Shapes", hittable: false);
         SpawnWiper(circle, .2f, new Color(0, 0, .4f), Trail.NoTrail, 1, 15, new Vector3(6, 6, 1), Direction.Left, layer: "Minigame_Foreground_Shapes", hittable: false);
+        yield return new WaitForSeconds(2f);
+        SpawnWiper(triangle, .5f, new Color(0, 0, 1), Trail.NoTrail, 2, 12, new Vector3(5, 5, 1), Direction.Up);
         yield return new WaitForSeconds(3);
 
         // MAKE SURE THAT ALL SHAPES ARE DESTROYED BEFORE ENDING THE MINIGAME!!!
