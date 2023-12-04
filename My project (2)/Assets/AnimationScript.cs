@@ -137,7 +137,7 @@ public class AnimationScript : MonoBehaviour
         lv1Music.Stop();
         lScript.endMinigame();
     }
-    public IEnumerator Level1() {
+    public IEnumerator CharlieLevel1() {
         yield return new WaitForSeconds(1);
         lScript.currentMusic = lv1Music;
         lv1Music.Play();
