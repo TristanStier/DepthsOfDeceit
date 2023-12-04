@@ -213,15 +213,137 @@ public class AnimationScript : MonoBehaviour
     public IEnumerator Level3() //Dive Into the Void
     {
         tempo = 0.521739130435f;
-        yield return new WaitForSeconds(1);
-        lv3Music.Play();
+        yield return new WaitForSeconds(tempo*6);
         
-        for (int i = 0; i < 12; i++)
+
+        SpawnStationary(square, new Vector2(0.5f, Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo, new Vector3(50.47177f, -0.2464595f, 1));
+        yield return new WaitForSeconds(tempo);
+        SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo, new Vector3(-0.2464595f, 50.47177f, 1));
+        yield return new WaitForSeconds(tempo);
+        lv3Music.Play();
+
+        for (int i = 0; i < 6; i++)
         {
-            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo / 2, new Vector3(10.47177f, -0.0464595f, 1));
+            SpawnStationary(square, new Vector2(0.5f, Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo, new Vector3(50.47177f, -0.2464595f, 1));
+            yield return new WaitForSeconds(tempo);
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo, new Vector3(-0.2464595f, 50.47177f, 1));
             yield return new WaitForSeconds(tempo);
         }
-    
+
+        for (int i = 0; i < 3; i++)
+        {
+            SpawnStationary(circle, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo/4, new Vector3(1, 1, 1));
+            yield return new WaitForSeconds(tempo/4);
+        }
+
+        SpawnStationary(circle, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo/2, new Vector3(1, 1, 1));
+        yield return new WaitForSeconds(tempo/2);
+
+        for (int i = 0; i < 3; i++)
+        {
+            SpawnStationary(circle, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo / 4, new Vector3(1, 1, 1));
+            yield return new WaitForSeconds(tempo / 4);
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            SpawnStationary(square, new Vector2(0.5f, Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo, new Vector3(50.47177f, -0.2464595f, 1));
+            yield return new WaitForSeconds(tempo);
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo, new Vector3(-0.2464595f, 50.47177f, 1));
+            yield return new WaitForSeconds(tempo);
+        }
+        
+        for (int i = 0; i < 2; i++) {
+
+            for (int j = 0; j < 2; j++)
+            {
+                yield return new WaitForSeconds(tempo / 4);
+                SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo / 4, new Vector3(-0.2464595f, 50.47177f, 1));
+                yield return new WaitForSeconds(tempo / 4);
+                SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo / 4, new Vector3(-0.2464595f, 50.47177f, 1));
+                yield return new WaitForSeconds(tempo / 4);
+                SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo / 4, new Vector3(-0.2464595f, 50.47177f, 1));
+                yield return new WaitForSeconds(tempo / 4);
+            }
+
+            for (int j = 0; j < 4; j++)
+            {
+                SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo / 2, new Vector3(-0.2464595f, 50.47177f, 1));
+                yield return new WaitForSeconds(tempo / 2);
+            }
+        }
+
+        //second melody
+        for (int i = 0; i < 4; i++)
+        {
+            SpawnStationary(square, new Vector2(0.5f, Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo, new Vector3(50.47177f, -0.4464595f, 1));
+            yield return new WaitForSeconds(tempo);
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo, new Vector3(-0.4464595f, 50.47177f, 1));
+            yield return new WaitForSeconds(tempo);
+        }
+
+        for (int i = 0; i < 2; i++)
+        {
+
+            for (int j = 0; j < 2; j++)
+            {
+                yield return new WaitForSeconds(tempo / 4);
+                SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo / 4, new Vector3(-0.2464595f, 50.47177f, 1));
+                yield return new WaitForSeconds(tempo / 4);
+                SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo / 4, new Vector3(-0.2464595f, 50.47177f, 1));
+                yield return new WaitForSeconds(tempo / 4);
+                SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo / 4, new Vector3(-0.2464595f, 50.47177f, 1));
+                yield return new WaitForSeconds(tempo / 4);
+            }
+
+            for (int j = 0; j < 4; j++)
+            {
+                SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo / 2, new Vector3(-0.2464595f, 50.47177f, 1));
+                yield return new WaitForSeconds(tempo / 2);
+            }
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            SpawnStationary(square, new Vector2(0.5f, Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo, new Vector3(50.47177f, -0.4464595f, 1));
+            yield return new WaitForSeconds(tempo);
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo, new Vector3(-0.4464595f, 50.47177f, 1));
+            yield return new WaitForSeconds(tempo);
+        }
+
+        for (int j = 0; j < 2; j++)
+        {
+            yield return new WaitForSeconds(tempo / 4);
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo / 4, new Vector3(-0.2464595f, 50.47177f, 1));
+            yield return new WaitForSeconds(tempo / 4);
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo / 4, new Vector3(-0.2464595f, 50.47177f, 1));
+            yield return new WaitForSeconds(tempo / 4);
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo / 4, new Vector3(-0.2464595f, 50.47177f, 1));
+            yield return new WaitForSeconds(tempo / 4);
+        }
+
+        for (int j = 0; j < 4; j++)
+        {
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo / 2, new Vector3(-0.2464595f, 50.47177f, 1));
+            yield return new WaitForSeconds(tempo / 2);
+        }
+
+        for (int j = 0; j < 2; j++)
+        {
+            yield return new WaitForSeconds(tempo / 4);
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo / 4, new Vector3(-0.2464595f, 50.47177f, 1));
+            yield return new WaitForSeconds(tempo / 4);
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo / 4, new Vector3(-0.2464595f, 50.47177f, 1));
+            yield return new WaitForSeconds(tempo / 4);
+            SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo / 4, new Vector3(-0.2464595f, 50.47177f, 1));
+            yield return new WaitForSeconds(tempo / 4);
+        }
+
+        yield return new WaitForSeconds(tempo * 4);
+
+        lv3Music.Stop();
+        lScript.endMinigame();
+
     }
 
 
