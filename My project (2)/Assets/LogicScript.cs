@@ -111,6 +111,7 @@ public class LogicScript : MonoBehaviourPunCallbacks //MonoBehaviour
         collidedPlayer.GetComponentInChildren<PlayerMovement>().minigame = false;
         Destroy(playerInstance);
         //taskBarGameObj.SetActive(true);
+        photonView.RPC("RpcTaskBar", RpcTarget.All, taskBarGameObj, true);
         if (won) {
             playerArray.Add(collidedPlayer);
             taskBarObj.value += 1;
@@ -168,6 +169,7 @@ public class LogicScript : MonoBehaviourPunCallbacks //MonoBehaviour
 
         StartCoroutine(currentLevel);
         //taskBarGameObj.SetActive(false);
+        photonView.RPC("RpcTaskBar", RpcTarget.All, taskBarGameObj, false);
         collidedPlayer = player;
         previousCamPos = new Vector3(player.GetComponentInChildren<Camera>().transform.position.x,  player.GetComponentInChildren<Camera>().transform.position.y,  player.GetComponentInChildren<Camera>().transform.position.z);
         player.GetComponentInChildren<Camera>().transform.position = new Vector3(-2, 56.1f,  player.GetComponentInChildren<Camera>().transform.position.z);
