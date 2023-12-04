@@ -140,10 +140,10 @@ public class LogicScript : MonoBehaviourPunCallbacks
         livesObj.transform.GetChild(num).GetComponent<SpriteRenderer>().enabled = false;
     }
 
-    public void beginMinigame(GameObject player, List<GameObject> pArray) {
-        if (loaded) {
-            return;
-        }
+  public void beginMinigame(GameObject player, List<GameObject> pArray) {
+    if (player == null || loaded) {
+        return;
+    }
 
         int s = Random.Range(0, 6);
 
