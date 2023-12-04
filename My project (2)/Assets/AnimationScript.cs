@@ -185,21 +185,8 @@ public class AnimationScript : MonoBehaviour
         SpawnWiper(circle, .2f, new Color(0, 0, .4f), Trail.NoTrail, 1, 15, new Vector3(6, 6, 1), Direction.Left, layer: "Minigame_Foreground_Shapes", hittable: false);
         yield return new WaitForSeconds(2f);
         SpawnWiper(triangle, .5f, new Color(0, 0, 1), Trail.NoTrail, 2, 12, new Vector3(5, 5, 1), Direction.Up);
-        /*for (int i = 0; i < 8; i++) {
-            float p = Random.Range(.1f, 1f);
-            int r = Random.Range(-5, 5);
-            int m = Random.Range(1, 14);
-            while (r == 0 && m == 0) {
-                r = Random.Range(-5, 5);
-                m = Random.Range(1, 14);
-            }
-            int s = Random.Range(0, 7);
-            int d = Random.Range(0, 4);
-            SpawnWiper(shapesArray[s], p, new Color(0, 0, 255), Trail.HasTrail, r, m, new Vector3(1, 1, 1), (Direction)d);
-        }*/
         yield return new WaitForSeconds(2f);
 
-        // MAKE SURE THAT ALL SHAPES ARE DESTROYED BEFORE ENDING THE MINIGAME!!!
         lv1Music.Stop();
         lScript.endMinigame();
     }
