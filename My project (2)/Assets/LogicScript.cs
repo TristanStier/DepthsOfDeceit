@@ -30,6 +30,8 @@ public class LogicScript : MonoBehaviour
     public Color regColor = new Color(255, 255, 255);
     public Vector3 previousCamPos;
 
+    public AudioSource gameMusic;
+
     public List<GameObject> playerArray;
 
     // Start is called before the first frame update
@@ -95,6 +97,7 @@ public class LogicScript : MonoBehaviour
         /*if (taskBarObj.value == taskBarObj.maxValue) {
             Win(); // Win for crewmates
         }*/
+        gameMusic.Play();
     }
 
     private IEnumerator setUnLoaded() {
@@ -126,7 +129,8 @@ public class LogicScript : MonoBehaviour
                 break;
         }
         playerArray = pArray;
-        //currentLevel = animationScript.Level3();
+        currentLevel = animationScript.Level1();
+        gameMusic.Stop();
         StartCoroutine(currentLevel);
         taskBarGameObj.SetActive(false);
         collidedPlayer = player;
