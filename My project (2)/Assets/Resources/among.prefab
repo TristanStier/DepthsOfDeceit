@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+  minigame: 0
 --- !u!114 &3806024799591743413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +129,7 @@ GameObject:
   - component: {fileID: 2277143652796833147}
   - component: {fileID: -2560643958868978607}
   - component: {fileID: -6936274860198642876}
+  - component: {fileID: 473760445569149826}
   m_Layer: 0
   m_Name: among
   m_TagString: Player
@@ -435,3 +437,18 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1.13, y: 1.5499954, z: 0}
+--- !u!114 &473760445569149826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8795381108072335248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 219f62a2fa4224342830650f9ffc3b88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killCooldown: 10
+  killDistance: 50
+  bodyPrefab: {fileID: 8828418672691442568, guid: a786cfeebd92449d19ce9028782b725c, type: 3}

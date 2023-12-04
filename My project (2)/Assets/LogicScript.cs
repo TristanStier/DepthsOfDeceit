@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using Photon.Pun.Demo.SlotRacer;
 using Unity.Collections;
 using UnityEngine;
@@ -23,14 +24,23 @@ public class LogicScript : MonoBehaviour
     public GameObject playerInstance;
     public GameObject collidedPlayer;
     public IEnumerator currentLevel;
+    public AudioSource currentMusic;
     public bool loaded = false;
     public Color invincibleColor = new Color(0, 200, 255);
     public Color regColor = new Color(255, 255, 255);
     public Vector3 previousCamPos;
+
+    public List<GameObject> playerArray;
+
     // Start is called before the first frame update
     void Start()
     {
         animationScript = animationObj.GetComponent<AnimationScript>();
+       // GameObject player = PhotonView.Find(playerViewID).gameObject;
+        //GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
+        taskBarObj.maxValue = PhotonNetwork.PlayerList.Length * 2; // 2 minigames per player
+        //taskBarObj.maxValue = 2;
+        //Debug.Log(taskBarObj.maxValue);
     }
 
     // Update is called once per frame
@@ -64,21 +74,31 @@ public class LogicScript : MonoBehaviour
         } else if (!playerScript.invulnerable && playerScript.lifePoints <= 0) {
             hit.Play();
             decreaseLifeGui(playerScript.lifePoints);
-            endMinigame();
+            endMinigame(false);
         }
     }
 
     [ContextMenu("Game Over")] // add it to Unity
-    public void endMinigame() {
+    public void endMinigame(bool won) {
         StopCoroutine(currentLevel);
+        currentMusic.Stop();
         collidedPlayer.GetComponentInChildren<Camera>().transform.position = previousCamPos;
         collidedPlayer.GetComponentInChildren<CameraFollow>().minigame = false;
         collidedPlayer.GetComponentInChildren<PlayerMovement>().minigame = false;
         Destroy(playerInstance);
         taskBarGameObj.SetActive(true);
-        if (playerInstance.GetComponent<PlayerScript>().lifePoints > 0) {
+        if (won) {
+            playerArray.Add(collidedPlayer);
             taskBarObj.value += 1;
         }
+        StartCoroutine(setUnLoaded()); // gives enough time for level to unload
+        /*if (taskBarObj.value == taskBarObj.maxValue) {
+            Win(); // Win for crewmates
+        }*/
+    }
+
+    private IEnumerator setUnLoaded() {
+        yield return new WaitForSeconds(2f);
         loaded = false;
     }
 
@@ -86,11 +106,27 @@ public class LogicScript : MonoBehaviour
         livesObj.transform.GetChild(num).GetComponent<SpriteRenderer>().enabled = false;
     }
 
-    public void beginMinigame(GameObject player) {
+    public void beginMinigame(GameObject player, List<GameObject> pArray) {
         if (loaded) {
             return;
         }
+
         currentLevel = animationScript.Level3();
+
+        int s = Random.Range(0, 2);
+        switch (s) {
+            case 0:
+                currentLevel = animationScript.Level1();
+                break;
+            case 1:
+                currentLevel = animationScript.Level2();
+                break;
+            case 2:
+                currentLevel = animationScript.Level3();
+                break;
+        }
+        playerArray = pArray;
+
         StartCoroutine(currentLevel);
         taskBarGameObj.SetActive(false);
         collidedPlayer = player;

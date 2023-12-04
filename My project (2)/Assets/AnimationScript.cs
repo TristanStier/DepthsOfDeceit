@@ -29,12 +29,20 @@ public class AnimationScript : MonoBehaviour
     public GameObject circle, square, triangle, hexagon, rhombus, capsule, roundedSquare;
     public GameObject logic;
     public LogicScript lScript;
+    public List<GameObject> shapesArray = new();
     public AudioSource lv1Music;
     public AudioSource lv2Music;
     public AudioSource lv3Music;
 
     void Start() {
         lScript = logic.GetComponent<LogicScript>();
+        shapesArray.Add(circle);
+        shapesArray.Add(square);
+        shapesArray.Add(triangle);
+        shapesArray.Add(hexagon);
+        shapesArray.Add(rhombus);
+        shapesArray.Add(capsule);
+        shapesArray.Add(roundedSquare);
     }
 
     public GameObject Spawn(GameObject shape, Vector2 pos, Color col, Trail t, int rotSpeed, int moveSpeed, bool isWiper, float dur, Direction dir, Vector3 scale, float alpha, bool hittable, float startRot, string layer, string trailLayer, bool isWarning) {
@@ -105,8 +113,9 @@ public class AnimationScript : MonoBehaviour
         return s;
     }
 
-    public IEnumerator Level1() {
+    public IEnumerator LevelTest() {
         yield return new WaitForSeconds(1);
+        lScript.currentMusic = lv1Music;
         lv1Music.Play();
         GameObject s = SpawnStationary(triangle, new Vector2(.8f, .7f), new Color(0, 0, 255), 0, 3, new Vector3(1, 1, 1), 270);
         yield return new WaitForSeconds(2);
@@ -131,12 +140,61 @@ public class AnimationScript : MonoBehaviour
 
         // MAKE SURE THAT ALL SHAPES ARE DESTROYED BEFORE ENDING THE MINIGAME!!!
         lv1Music.Stop();
-        lScript.endMinigame();
+        lScript.endMinigame(true);
+    }
+     public IEnumerator Level1() {
+        yield return new WaitForSeconds(1);
+        lScript.currentMusic = lv1Music;
+        lv1Music.Play();
+        for (int i = 0; i < 29; i++) {
+            yield return new WaitForSeconds(.3f);
+            int s = Random.Range(-3, 3);
+            while (s == 0) {
+                s = Random.Range(-3, 3);
+            }
+            SpawnStationary(triangle, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), s, 2, new Vector3(1, 1, 1));
+        }
+        for (int i = 0; i < 33; i++) {
+            yield return new WaitForSeconds(.3f);
+            int s = Random.Range(-3, 3);
+            while (s == 0) {
+                s = Random.Range(-3, 3);
+            }
+            SpawnStationary(hexagon, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), s, 2, new Vector3(1, 1, 1));
+        }
+        SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 21, new Vector3(.5f, 30, 1), startRot: 0, alpha: .01f, hittable: false, layer: "Minigame_Background_Shapes", warning: false);
+        SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 21, new Vector3(.5f, 30, 1), startRot: 90, alpha: .01f, hittable: false, layer: "Minigame_Background_Shapes", warning: false);
+        SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 21, new Vector3(.5f, 30, 1), startRot: 45, alpha: .01f, hittable: false, layer: "Minigame_Background_Shapes", warning: false);
+        SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 21, new Vector3(.5f, 30, 1), startRot: 135, alpha: .01f, hittable: false, layer: "Minigame_Background_Shapes", warning: false);
+        for (int i = 0; i < 9; i++) {
+            float s = Random.Range(1, 4);
+            yield return new WaitForSeconds(1.2f);
+            SpawnStationary(circle, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, .8f, new Vector3(s, s, 0));
+            //yield return new WaitForSeconds(1f);
+        }
+        SpawnWiper(hexagon, .3f, new Color(0, 0, 255), Trail.HasTrail, 4, 3, new Vector3(1, 1, 1), Direction.Right);
+        SpawnWiper(hexagon, .6f, new Color(0, 0, 255), Trail.HasTrail, 4, 4, new Vector3(1, 1, 1), Direction.Right);
+        SpawnWiper(hexagon, .9f, new Color(0, 0, 255), Trail.HasTrail, 4, 3, new Vector3(1, 1, 1), Direction.Right);
+        for (int i = 0; i < 6; i++) {
+            float s = Random.Range(5, 8);
+            yield return new WaitForSeconds(1.2f);
+            SpawnStationary(circle, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), 0, .8f, new Vector3(s, s, 0));
+            //yield return new WaitForSeconds(1f);
+        }
+        SpawnWiper(square, .8f, new Color(0, 0, .4f), Trail.NoTrail, 1, 15, new Vector3(6, 6, 1), Direction.Right, layer: "Minigame_Foreground_Shapes", hittable: false);
+        SpawnWiper(circle, .2f, new Color(0, 0, .4f), Trail.NoTrail, 1, 15, new Vector3(6, 6, 1), Direction.Left, layer: "Minigame_Foreground_Shapes", hittable: false);
+        yield return new WaitForSeconds(2f);
+        SpawnWiper(triangle, .5f, new Color(0, 0, 1), Trail.NoTrail, 2, 12, new Vector3(5, 5, 1), Direction.Up);
+        yield return new WaitForSeconds(2f);
+
+        lv1Music.Stop();
+        lScript.endMinigame(true);
     }
 
     public IEnumerator Level2() //Tetris 99 theme
     {
         tempo = 0.428571428571f;
+        lScript.currentMusic = lv2Music;
         yield return new WaitForSeconds(1);
         lv2Music.Play();
         for (int j = 0; j < 2; j++) {
@@ -207,13 +265,19 @@ public class AnimationScript : MonoBehaviour
         yield return new WaitForSeconds(tempo * 4);
 
         lv2Music.Stop();
-        lScript.endMinigame();
+        lScript.endMinigame(true);
     }
 
     public IEnumerator Level3() //Dive Into the Void
     {
         tempo = 0.521739130435f;
+
         yield return new WaitForSeconds(tempo*6);
+
+        yield return new WaitForSeconds(1);
+        lScript.currentMusic = lv3Music;
+        lv3Music.Play();
+
         
 
         SpawnStationary(square, new Vector2(0.5f, Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo, new Vector3(50.47177f, -0.2464595f, 1));
@@ -342,7 +406,7 @@ public class AnimationScript : MonoBehaviour
         yield return new WaitForSeconds(tempo * 4);
 
         lv3Music.Stop();
-        lScript.endMinigame();
+        lScript.endMinigame(true);
 
     }
 

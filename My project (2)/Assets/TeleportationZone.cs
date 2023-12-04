@@ -1,44 +1,44 @@
 using UnityEngine;
+using Photon.Pun;
 
-public class TeleportationZone : MonoBehaviour
+public class TeleportationZone : MonoBehaviourPun
 {
-    // Set the teleport destination
-    public Transform teleportDestination;
+    public Transform destination; // Assign the destination object in the Inspector
+    public string impostorTag = "Impostor";
 
-    // Minimum number of players needed to trigger teleportation
-    public int minPlayersRequired = 5;
-
-    // Delay before teleportation (in seconds)
-    public float teleportDelay = 3f;
+    private bool impostorAssigned = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !impostorAssigned)
         {
-            // Check the number of players in the scene
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            photonView.RPC("TeleportPlayer", RpcTarget.All, other.GetComponent<PhotonView>().ViewID);
 
-            if (players.Length >= minPlayersRequired)
-            {
-                // Invoke the TeleportPlayers method after the delay
-                Invoke("TeleportPlayers", teleportDelay);
-            }
-            else
-            {
-                Debug.Log("Not enough players to trigger teleportation.");
-            }
         }
     }
 
-    // Method to teleport players
-    private void TeleportPlayers()
+    [PunRPC]
+    private void TeleportPlayer(int playerViewID, int playerSpriteIndex)
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        GameObject player = PhotonView.Find(playerViewID).gameObject;
+        GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
 
-        // Teleport all players to the destination
-        foreach (GameObject player in players)
+        if (allPlayers.Length >= 1)
         {
-            player.transform.position = teleportDestination.position;
+            foreach (GameObject p in allPlayers)
+            {
+                if (p == player)
+                {
+                    if (p == allPlayers[playerSpriteIndex] && !impostorAssigned)
+                    {
+                        p.tag = impostorTag;
+                        impostorAssigned = true;
+                    }
+
+                    // Teleport the player to the destination
+                    p.transform.position = destination.position;
+                }
+            }
         }
     }
 }
