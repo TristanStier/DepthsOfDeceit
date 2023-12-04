@@ -454,7 +454,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: cd99dfa6ffef45b4cafa53dcb032642b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4bc82df351d93ac418c8b98dfc68538e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1593,6 +1593,7 @@ MonoBehaviour:
   invincibleColor: {r: 0, g: 200, b: 255, a: 1}
   regColor: {r: 255, g: 255, b: 255, a: 1}
   previousCamPos: {x: 0, y: 0, z: 0}
+  playerArray: []
 --- !u!1 &1128658926
 GameObject:
   m_ObjectHideFlags: 0

@@ -113,7 +113,7 @@ public class LogicScript : MonoBehaviour
 
         currentLevel = animationScript.Level3();
 
-        int s = Random.Range(0, 2);
+        int s = Random.Range(0, 3);
         switch (s) {
             case 0:
                 currentLevel = animationScript.Level1();
@@ -126,7 +126,7 @@ public class LogicScript : MonoBehaviour
                 break;
         }
         playerArray = pArray;
-
+        currentLevel = animationScript.Level3();
         StartCoroutine(currentLevel);
         taskBarGameObj.SetActive(false);
         collidedPlayer = player;
