@@ -38,9 +38,9 @@ public class LogicScript : MonoBehaviour
         animationScript = animationObj.GetComponent<AnimationScript>();
        // GameObject player = PhotonView.Find(playerViewID).gameObject;
         //GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
-        //taskBarObj.maxValue = PhotonNetwork.PlayerList.Length * 2; // 2 minigames per player
-        taskBarObj.maxValue = 2;
-        Debug.Log(taskBarObj.maxValue);
+        taskBarObj.maxValue = PhotonNetwork.PlayerList.Length * 2; // 2 minigames per player
+        //taskBarObj.maxValue = 2;
+        //Debug.Log(taskBarObj.maxValue);
     }
 
     // Update is called once per frame
@@ -92,6 +92,9 @@ public class LogicScript : MonoBehaviour
             taskBarObj.value += 1;
         }
         StartCoroutine(setUnLoaded()); // gives enough time for level to unload
+        /*if (taskBarObj.value == taskBarObj.maxValue) {
+            Win(); // Win for crewmates
+        }*/
     }
 
     private IEnumerator setUnLoaded() {
