@@ -151,8 +151,8 @@ public class LogicScript : MonoBehaviour
         }
         playerArray = pArray;
 
-        //gameMusic.Stop();
-        RpcStopSound(gameMusic);
+        gameMusic.Stop();
+        //RpcStopSound(gameMusic);
         //currentLevel = animationScript.Level6();
 
         gameMusic.Stop();
