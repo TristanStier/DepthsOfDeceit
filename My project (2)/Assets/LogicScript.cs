@@ -86,7 +86,7 @@ public class LogicScript : MonoBehaviour
         collidedPlayer.GetComponentInChildren<CameraFollow>().minigame = false;
         collidedPlayer.GetComponentInChildren<PlayerMovement>().minigame = false;
         Destroy(playerInstance);
-        taskBarGameObj.SetActive(true);
+        //taskBarGameObj.SetActive(true);
         if (won) {
             playerArray.Add(collidedPlayer);
             taskBarObj.value += 1;
@@ -135,7 +135,7 @@ public class LogicScript : MonoBehaviour
         playerArray = pArray;
         gameMusic.Stop();
         StartCoroutine(currentLevel);
-        taskBarGameObj.SetActive(false);
+        //taskBarGameObj.SetActive(false);
         collidedPlayer = player;
         previousCamPos = new Vector3(player.GetComponentInChildren<Camera>().transform.position.x,  player.GetComponentInChildren<Camera>().transform.position.y,  player.GetComponentInChildren<Camera>().transform.position.z);
         player.GetComponentInChildren<Camera>().transform.position = new Vector3(-2, 56.1f,  player.GetComponentInChildren<Camera>().transform.position.z);
