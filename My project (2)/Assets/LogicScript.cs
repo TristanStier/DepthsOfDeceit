@@ -148,7 +148,7 @@ public class LogicScript : MonoBehaviour
         playerArray = pArray;
         gameMusic.Stop();
         //RpcStopSound(gameMusic);
-        currentLevel = animationScript.Level1();
+        //currentLevel = animationScript.Level5();
         StartCoroutine(currentLevel);
         //taskBarGameObj.SetActive(false);
         collidedPlayer = player;
