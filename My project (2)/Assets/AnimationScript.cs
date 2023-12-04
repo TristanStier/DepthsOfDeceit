@@ -207,6 +207,7 @@ public class AnimationScript : MonoBehaviour
     public IEnumerator Level2() //Tetris 99 theme
     {
         tempo = 0.428571428571f;
+        lScript.currentMusic = lv2Music;
         yield return new WaitForSeconds(1);
         lv2Music.Play();
         for (int j = 0; j < 2; j++) {
@@ -284,6 +285,7 @@ public class AnimationScript : MonoBehaviour
     {
         tempo = 0.521739130435f;
         yield return new WaitForSeconds(1);
+        lScript.currentMusic = lv3Music;
         lv3Music.Play();
         
         for (int i = 0; i < 12; i++)
