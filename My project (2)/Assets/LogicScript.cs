@@ -126,7 +126,7 @@ public class LogicScript : MonoBehaviour
                 break;
         }
         playerArray = pArray;
-        currentLevel = animationScript.Level3();
+        //currentLevel = animationScript.Level3();
         StartCoroutine(currentLevel);
         taskBarGameObj.SetActive(false);
         collidedPlayer = player;
