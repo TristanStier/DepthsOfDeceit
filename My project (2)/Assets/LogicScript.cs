@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using Photon.Pun.Demo.SlotRacer;
 using Unity.Collections;
 using UnityEngine;
@@ -28,10 +29,14 @@ public class LogicScript : MonoBehaviour
     public Color invincibleColor = new Color(0, 200, 255);
     public Color regColor = new Color(255, 255, 255);
     public Vector3 previousCamPos;
+
     // Start is called before the first frame update
     void Start()
     {
         animationScript = animationObj.GetComponent<AnimationScript>();
+        GameObject player = PhotonView.Find(playerViewID).gameObject;
+        GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
+        taskBarObj.maxValue = allPlayers.Length * 2; // 2 minigames per player
     }
 
     // Update is called once per frame
