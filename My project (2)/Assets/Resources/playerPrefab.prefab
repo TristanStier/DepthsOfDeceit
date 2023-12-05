@@ -40,6 +40,14 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1662125829490340591, guid: 6ed6efb8fe7422e48b54ed03700fc725, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662125829490340591, guid: 6ed6efb8fe7422e48b54ed03700fc725, type: 3}
+      propertyPath: ObservedComponents.Array.data[1]
+      value: 
+      objectReference: {fileID: 8075794216299096661}
     - target: {fileID: 3806024799591743413, guid: 6ed6efb8fe7422e48b54ed03700fc725, type: 3}
       propertyPath: sceneViewId
       value: 0
@@ -130,6 +138,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8795381108072335248, guid: 6ed6efb8fe7422e48b54ed03700fc725, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1269435026868052274}
+    - targetCorrespondingSourceObject: {fileID: 8795381108072335248, guid: 6ed6efb8fe7422e48b54ed03700fc725, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1474065405901407605}
+    - targetCorrespondingSourceObject: {fileID: 8795381108072335248, guid: 6ed6efb8fe7422e48b54ed03700fc725, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8075794216299096661}
   m_SourcePrefab: {fileID: 100100000, guid: 6ed6efb8fe7422e48b54ed03700fc725, type: 3}
 --- !u!1 &4593759830197042127 stripped
 GameObject:
@@ -162,6 +176,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerLight: {fileID: 6509146944671228196}
   impostorTag: Impostor
+--- !u!114 &1474065405901407605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593759830197042127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e154ef94961bf4dc287363c04a3ffde0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8075794216299096661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593759830197042127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 0
+    Name: Blend
+  - Type: 4
+    SynchronizeType: 2
+    Name: IsMovingLeft
+  - Type: 4
+    SynchronizeType: 0
+    Name: IsMovingRight
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!114 &6509146944671228196 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2277143652796833147, guid: 6ed6efb8fe7422e48b54ed03700fc725, type: 3}
