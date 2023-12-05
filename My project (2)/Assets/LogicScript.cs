@@ -118,7 +118,7 @@ public class LogicScript : MonoBehaviourPunCallbacks
         collidedPlayer.GetComponentInChildren<PlayerMovement>().minigame = false;
         Destroy(playerInstance);
         //taskBarGameObj.SetActive(true);
-        photonView.RPC("RpcTaskBar", RpcTarget.All, taskBarGameObj, true);
+        //photonView.RPC("RpcTaskBar", RpcTarget.All, taskBarGameObj, true);
         if (won) {
             playerArray.Add(collidedPlayer);
             taskBarObj.value += 1;
