@@ -93,15 +93,15 @@ public class LogicScript : MonoBehaviourPunCallbacks
     [ContextMenu("Decrease Life")] // add it to Unity
     public void decreaseLife(int num) {
         if (!playerScript.invulnerable && playerScript.lifePoints > 0) {
-            //hit.Play();
-            photonView.RPC("RpcPlaySound", RpcTarget.All, hit);
+            hit.Play();
+            //photonView.RPC("RpcPlaySound", RpcTarget.All, hit);
             playerScript.lifePoints -= num;
             decreaseLifeGui(playerScript.lifePoints);
             playerScript.StartCoroutine(playerScript.setInvulnerable());
             Debug.Log("Decreasing life " + playerScript.lifePoints);
         } else if (!playerScript.invulnerable && playerScript.lifePoints <= 0) {
-            //hit.Play();
-            photonView.RPC("RpcPlaySound", RpcTarget.All, hit);
+            hit.Play();
+            //photonView.RPC("RpcPlaySound", RpcTarget.All, hit);
             decreaseLifeGui(playerScript.lifePoints);
             endMinigame(false);
         }
@@ -172,7 +172,7 @@ public class LogicScript : MonoBehaviourPunCallbacks
         //gameMusic.Stop();
         //photonView.RPC("RpcStopSound", RpcTarget.All, gameMusic);
         //RpcStopSound(gameMusic);
-        //currentLevel = animationScript.Level1();
+        //currentLevel = animationScript.LevelTest();
 
         StartCoroutine(currentLevel);
         //taskBarGameObj.SetActive(false);

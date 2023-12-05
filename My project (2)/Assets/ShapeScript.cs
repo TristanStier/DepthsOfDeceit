@@ -19,8 +19,6 @@ public class ShapeScript : MonoBehaviour
     private LogicScript logic;
     public AnimationScript animScript;
     public bool hittable = true;
-    public GameObject shapeObj;
-    public Sprite sp;
     public int rotationSpeed;
     public int moveSpeed;
     public float dzXleft = -15f, dzXright = 12f;

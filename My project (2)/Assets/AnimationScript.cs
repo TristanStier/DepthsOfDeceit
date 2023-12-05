@@ -115,13 +115,11 @@ public class AnimationScript : MonoBehaviour
         return s;
     }
 
-    /*public IEnumerator LevelTest() {
+    public IEnumerator LevelTest() {
         yield return new WaitForSeconds(1);
-        lScript.currentMusic = lv1Music;
-        lv1Music.Play();
-        GameObject s = SpawnStationary(triangle, new Vector2(.8f, .7f), new Color(0, 0, 255), 0, 3, new Vector3(1, 1, 1), 270);
+        GameObject s = SpawnStationary(triangle, new Vector2(.8f, .7f), new Color(0, 0, 255), 0, 50, new Vector3(1, 1, 1), 270);
         yield return new WaitForSeconds(2);
-        SpawnWiper(hexagon, .2f, new Color(0, 0, 255), Trail.HasTrail, 4, 4, new Vector3(1, 1, 1), Direction.Right);
+        SpawnWiper(hexagon, .2f, new Color(0, 0, 255), Trail.HasTrail, 4, 1, new Vector3(1, 1, 1), Direction.Right);
         yield return new WaitForSeconds(3);
         //SpawnStationary(square, new Vector2(.5f, .5f), new Color(0, 0, 255), 1, 6, new Vector3(.5f, 30, 1));
         SpawnWiper(hexagon, .2f, new Color(0, 0, 255), Trail.HasTrail, 4, 4, new Vector3(1, 1, 1), Direction.Right);
@@ -138,12 +136,11 @@ public class AnimationScript : MonoBehaviour
             yield return new WaitForSeconds(.5f);
             SpawnStationary(triangle, new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f)), new Color(0, 0, 255), -4, 2, new Vector3(1, 1, 1));
         }
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(50);
 
         // MAKE SURE THAT ALL SHAPES ARE DESTROYED BEFORE ENDING THE MINIGAME!!!
-        lv1Music.Stop();
-        lScript.endMinigame(true);
-    }*/
+        lScript.endMinigame(false);
+    }
 
      public IEnumerator Level1() {
         yield return new WaitForSeconds(1);
