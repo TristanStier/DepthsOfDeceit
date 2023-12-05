@@ -125,12 +125,12 @@ public class LogicScript : MonoBehaviourPunCallbacks
         //photonView.RPC("RpcTaskBar", RpcTarget.All, taskBarGameObj, true);
         if (won) {
             playerArray.Add(collidedPlayer);
-            photonView.RPC("RpcTaskBar", RpcTarget.All);
+            photonView.RPC("RpcTaskBar", RpcTarget.OthersBuffered);
         }
         StartCoroutine(setUnLoaded()); // gives enough time for level to unload
         if (taskBarObj.value >= taskBarObj.maxValue) {
             //SceneManager.LoadScene("CrewmateWin");
-            photonView.RPC("ShowWinScene", RpcTarget.All);
+            photonView.RPC("ShowWinScene", RpcTarget.OthersBuffered);
         }
         //gameMusic.Play();
         //photonView.RPC("RpcPlaySound", RpcTarget.All, gameMusic);
