@@ -76,20 +76,23 @@ public class LogicScript : MonoBehaviourPunCallbacks
         if (photonView.IsMine) {
             audio.Play();
         }
-    }
-    [PunRPC]
-    public void RpcTaskBar(GameObject taskbarObj, bool enabled)
-    {
-        if (photonView.IsMine) {
-            taskbarObj.SetActive(enabled);
-        }
     }*/
+    [PunRPC]
+    public void RpcTaskBar()
+    {
+        taskBarObj.value += 1;
+    }
     /*public void isMine(Func<AudioSource> musicFunc, AudioSource music) {
          if (photonView.IsMine)
         {
             photonView.RPC(musicFunc, music);
         }
     }*/
+    [PunRPC]
+    private void ShowWinScene()
+    {
+        SceneManager.LoadScene("CrewmateWin");
+    }
 
     [ContextMenu("Decrease Life")] // add it to Unity
     public void decreaseLife(int num) {
@@ -122,11 +125,12 @@ public class LogicScript : MonoBehaviourPunCallbacks
         //photonView.RPC("RpcTaskBar", RpcTarget.All, taskBarGameObj, true);
         if (won) {
             playerArray.Add(collidedPlayer);
-            taskBarObj.value += 1;
+            photonView.RPC("ShowWinScene", RpcTarget.All);
         }
         StartCoroutine(setUnLoaded()); // gives enough time for level to unload
         if (taskBarObj.value >= taskBarObj.maxValue) {
-            SceneManager.LoadScene("CrewmateWin");
+            //SceneManager.LoadScene("CrewmateWin");
+            photonView.RPC("RpcTaskBar", RpcTarget.All);
         }
         //gameMusic.Play();
         //photonView.RPC("RpcPlaySound", RpcTarget.All, gameMusic);
