@@ -7,6 +7,11 @@ public class Impostor : MonoBehaviourPunCallbacks
     public float killDistance = 2f;
     public GameObject bodyPrefab;
     private float lastKillTime;
+    public ImpWin impWinS;
+
+    void Start() {
+        impWinS = GameObject.FindGameObjectWithTag("impwinobj").GetComponent<ImpWin>();
+    }
 
     void Update()
     {
@@ -85,6 +90,7 @@ public class Impostor : MonoBehaviourPunCallbacks
 
         // Synchronize the target player's state across the network
         photonView.RPC("DisablePlayerForOthersRPC", RpcTarget.OthersBuffered, targetViewID);
+        impWinS.CheckWinConditions();
     }
 
     [PunRPC]

@@ -18,6 +18,7 @@ TagManager:
   - Impostor
   - Ghost
   - minigameMusic
+  - impwinobj
   layers:
   - Default
   - TransparentFX

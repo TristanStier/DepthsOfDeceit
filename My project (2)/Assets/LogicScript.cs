@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LogicScript : MonoBehaviourPunCallbacks
 {
@@ -124,9 +125,9 @@ public class LogicScript : MonoBehaviourPunCallbacks
             taskBarObj.value += 1;
         }
         StartCoroutine(setUnLoaded()); // gives enough time for level to unload
-        /*if (taskBarObj.value == taskBarObj.maxValue) {
-            Win(); // Win for crewmates
-        }*/
+        if (taskBarObj.value == taskBarObj.maxValue) {
+            SceneManager.LoadScene("CrewmateWin");
+        }
         //gameMusic.Play();
         //photonView.RPC("RpcPlaySound", RpcTarget.All, gameMusic);
     }

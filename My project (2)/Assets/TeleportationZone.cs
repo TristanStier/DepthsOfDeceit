@@ -30,7 +30,7 @@ public class TeleportationZone : MonoBehaviourPun
                 {
                     if (!impostorAssigned)
                     {
-                        p.tag = impostorTag;
+                        //p.tag = impostorTag;
                         impostorAssigned = true;
                     }
 
