@@ -112,28 +112,35 @@ public class LogicScript : MonoBehaviourPunCallbacks
     }
 
     [ContextMenu("Game Over")] // add it to Unity
-    public void endMinigame(bool won) {
-        StopCoroutine(currentLevel);
-        //currentMusic.Stop();
-        //photonView.RPC("RpcStopSound", RpcTarget.All, currentMusic);
-        //RpcStopSound(currentMusic);
-        collidedPlayer.GetComponentInChildren<Camera>().transform.position = previousCamPos;
-        collidedPlayer.GetComponentInChildren<CameraFollow>().minigame = false;
-        collidedPlayer.GetComponentInChildren<PlayerMovement>().minigame = false;
-        Destroy(playerInstance);
-        //taskBarGameObj.SetActive(true);
-        //photonView.RPC("RpcTaskBar", RpcTarget.All, taskBarGameObj, true);
-        if (won) {
-            playerArray.Add(collidedPlayer);
-            photonView.RPC("RpcTaskBar", RpcTarget.All);
+    public void endMinigame(bool won)
+    {
+        if (collidedPlayer != null)
+        {
+
+            StopCoroutine(currentLevel);
+            //currentMusic.Stop();
+            //photonView.RPC("RpcStopSound", RpcTarget.All, currentMusic);
+            //RpcStopSound(currentMusic);
+            collidedPlayer.GetComponentInChildren<Camera>().transform.position = previousCamPos;
+            collidedPlayer.GetComponentInChildren<CameraFollow>().minigame = false;
+            collidedPlayer.GetComponentInChildren<PlayerMovement>().minigame = false;
+            Destroy(playerInstance);
+            //taskBarGameObj.SetActive(true);
+            //photonView.RPC("RpcTaskBar", RpcTarget.All, taskBarGameObj, true);
+            if (won)
+            {
+                playerArray.Add(collidedPlayer);
+                photonView.RPC("RpcTaskBar", RpcTarget.All);
+            }
+            StartCoroutine(setUnLoaded()); // gives enough time for level to unload
+            if (taskBarObj.value >= taskBarObj.maxValue)
+            {
+                //SceneManager.LoadScene("CrewmateWin");
+                photonView.RPC("ShowWinScene", RpcTarget.All);
+            }
+            //gameMusic.Play();
+            //photonView.RPC("RpcPlaySound", RpcTarget.All, gameMusic);
         }
-        StartCoroutine(setUnLoaded()); // gives enough time for level to unload
-        if (taskBarObj.value >= taskBarObj.maxValue) {
-            //SceneManager.LoadScene("CrewmateWin");
-            photonView.RPC("ShowWinScene", RpcTarget.All);
-        }
-        //gameMusic.Play();
-        //photonView.RPC("RpcPlaySound", RpcTarget.All, gameMusic);
     }
 
     private IEnumerator setUnLoaded() {
