@@ -9,12 +9,7 @@ public class Impostor : MonoBehaviourPunCallbacks
     private float lastKillTime;
     public ImpWin impWinS;
 
-<<<<<<< HEAD
-    void Start()
-    {
-=======
     void Start() {
->>>>>>> eeec4fc59894a1e5f7f1c4e59bf48c46884cc377
         impWinS = GameObject.FindGameObjectWithTag("impwinobj").GetComponent<ImpWin>();
     }
 
