@@ -19,11 +19,12 @@ public class ImpWin : MonoBehaviourPunCallbacks
     private void Update()
     {
         // Check win conditions in every frame
-        CheckWinConditions();
+        // moved to impostor.cs for efficiency
+        //CheckWinConditions();
     }
 
     // Check if the impostors outnumber the players
-    private void CheckWinConditions()
+    public void CheckWinConditions()
     {
         if (photonView == null)
         {
@@ -48,7 +49,7 @@ public class ImpWin : MonoBehaviourPunCallbacks
         }
 
         // Check win conditions
-        if (impostors > players)
+        if (impostors >= players) // >=
         {
             photonView.RPC("ShowWinScene", RpcTarget.All);
         }
