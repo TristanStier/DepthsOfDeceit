@@ -48,7 +48,7 @@ public class ImpWin : MonoBehaviourPunCallbacks
         }
 
         // Check win conditions
-        if (impostors >= players)
+        if (impostors > players)
         {
             photonView.RPC("ShowWinScene", RpcTarget.All);
         }
