@@ -79,7 +79,7 @@ public class Impostor : MonoBehaviourPunCallbacks
         CapsuleCollider2D targetCollider = targetPlayer.GetComponent<CapsuleCollider2D>();
         if (targetCollider != null)
         {
-            targetCollider.enabled = false;
+            targetCollider.enabled = true;
         }
         targetPlayer.tag = "Ghost";
 
@@ -108,6 +108,7 @@ public class Impostor : MonoBehaviourPunCallbacks
             // Use MaterialPropertyBlock to modify the material's alpha value
             MaterialPropertyBlock materialBlock = new MaterialPropertyBlock();
             targetRenderer.GetPropertyBlock(materialBlock);
+            Instantiate(bodyPrefab, targetPlayer.transform.position, Quaternion.identity);
 
             // Make the target player half transparent
             materialBlock.SetFloat("_Mode", 2); // Set the material rendering mode to transparent

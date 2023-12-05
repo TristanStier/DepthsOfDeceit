@@ -3,15 +3,20 @@ using Photon.Pun;
 
 public class PlayerMovement : MonoBehaviourPun
 {
-    public float speed = 5f;
+    public float speed = 15f;
     public bool minigame = false;
 
     void Update()
     {
         if (photonView.IsMine && !minigame)
         {
-            // Handle movement only for the local player
+            // Check if the parent object has the tag "impostor"
+            if (transform.parent != null && transform.parent.CompareTag("Impostor"))
+            {
+                speed = 8f; // Adjust speed for the impostor
+            }
 
+            // Handle movement only for the local player
             float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical");
 
@@ -20,6 +25,5 @@ public class PlayerMovement : MonoBehaviourPun
             // Apply movement to the parent object
             transform.parent.Translate(movement);
         }
-
     }
 }

@@ -130,6 +130,8 @@ GameObject:
   - component: {fileID: -2560643958868978607}
   - component: {fileID: -6936274860198642876}
   - component: {fileID: 473760445569149826}
+  - component: {fileID: 2108844405675566100}
+  - component: {fileID: 128190130728472492}
   m_Layer: 0
   m_Name: among
   m_TagString: Player
@@ -452,3 +454,30 @@ MonoBehaviour:
   killCooldown: 10
   killDistance: 50
   bodyPrefab: {fileID: 8828418672691442568, guid: a786cfeebd92449d19ce9028782b725c, type: 3}
+  impWinS: {fileID: 0}
+--- !u!114 &2108844405675566100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8795381108072335248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f61042aff35294a979ef0cc2e839a727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &128190130728472492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8795381108072335248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59d93777583a24e6aa49d0d98c47d23b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLight: {fileID: 2277143652796833147}
+  impostorTag: Impostor
