@@ -125,7 +125,7 @@ public class LogicScript : MonoBehaviourPunCallbacks
             taskBarObj.value += 1;
         }
         StartCoroutine(setUnLoaded()); // gives enough time for level to unload
-        if (taskBarObj.value == taskBarObj.maxValue) {
+        if (taskBarObj.value >= taskBarObj.maxValue) {
             SceneManager.LoadScene("CrewmateWin");
         }
         //gameMusic.Play();
