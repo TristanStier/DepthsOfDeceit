@@ -69,7 +69,7 @@ public class LogicScript : MonoBehaviourPunCallbacks
             audio.Stop();
         }
     }
-    [PunRPC]
+    /*[PunRPC]
     public void RpcPlaySound(AudioSource audio)
     {
         if (photonView.IsMine) {
@@ -82,7 +82,7 @@ public class LogicScript : MonoBehaviourPunCallbacks
         if (photonView.IsMine) {
             taskbarObj.SetActive(enabled);
         }
-    }
+    }*/
     /*public void isMine(Func<AudioSource> musicFunc, AudioSource music) {
          if (photonView.IsMine)
         {
@@ -111,7 +111,7 @@ public class LogicScript : MonoBehaviourPunCallbacks
     public void endMinigame(bool won) {
         StopCoroutine(currentLevel);
         //currentMusic.Stop();
-        photonView.RPC("RpcStopSound", RpcTarget.All, currentMusic);
+        //photonView.RPC("RpcStopSound", RpcTarget.All, currentMusic);
         //RpcStopSound(currentMusic);
         collidedPlayer.GetComponentInChildren<Camera>().transform.position = previousCamPos;
         collidedPlayer.GetComponentInChildren<CameraFollow>().minigame = false;
@@ -128,7 +128,7 @@ public class LogicScript : MonoBehaviourPunCallbacks
             Win(); // Win for crewmates
         }*/
         //gameMusic.Play();
-        photonView.RPC("RpcPlaySound", RpcTarget.All, gameMusic);
+        //photonView.RPC("RpcPlaySound", RpcTarget.All, gameMusic);
     }
 
     private IEnumerator setUnLoaded() {
@@ -172,11 +172,11 @@ public class LogicScript : MonoBehaviourPunCallbacks
         //gameMusic.Stop();
         //photonView.RPC("RpcStopSound", RpcTarget.All, gameMusic);
         //RpcStopSound(gameMusic);
-        currentLevel = animationScript.Level1();
+        //currentLevel = animationScript.Level1();
 
         StartCoroutine(currentLevel);
         //taskBarGameObj.SetActive(false);
-        photonView.RPC("RpcTaskBar", RpcTarget.All, taskBarGameObj, false);
+        //photonView.RPC("RpcTaskBar", RpcTarget.All, taskBarGameObj, false);
         collidedPlayer = player;
         previousCamPos = new Vector3(player.GetComponentInChildren<Camera>().transform.position.x,  player.GetComponentInChildren<Camera>().transform.position.y,  player.GetComponentInChildren<Camera>().transform.position.z);
         player.GetComponentInChildren<Camera>().transform.position = new Vector3(-2, 56.1f,  player.GetComponentInChildren<Camera>().transform.position.z);

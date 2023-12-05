@@ -26,12 +26,14 @@ public class AnimationScript : MonoBehaviour
     public GameObject logic;
     public LogicScript lScript;
     public List<GameObject> shapesArray = new();
-    public AudioSource lv1Music;
-    public AudioSource lv2Music;
-    public AudioSource lv3Music;
-    public AudioSource lv4Music;
-    public AudioSource lv5Music;
-    public AudioSource lv6Music;
+    public AudioClip lv1Music;
+    public AudioClip lv2Music;
+    public AudioClip lv3Music;
+    public AudioClip lv4Music;
+    public AudioClip lv5Music;
+    public AudioClip lv6Music;
+    public AudioSource music;
+    public GameObject musicObj;
 
     void Start() {
         lScript = logic.GetComponent<LogicScript>();
@@ -42,6 +44,7 @@ public class AnimationScript : MonoBehaviour
         shapesArray.Add(rhombus);
         shapesArray.Add(capsule);
         shapesArray.Add(roundedSquare);
+        music = musicObj.GetComponent<AudioSource>();
     }
 
     public GameObject Spawn(GameObject shape, Vector2 pos, Color col, Trail t, int rotSpeed, int moveSpeed, bool isWiper, float dur, Direction dir, Vector3 scale, float alpha, bool hittable, float startRot, string layer, string trailLayer, bool isWarning) {
@@ -144,8 +147,9 @@ public class AnimationScript : MonoBehaviour
 
      public IEnumerator Level1() {
         yield return new WaitForSeconds(1);
-        lScript.currentMusic = lv1Music;
-        //lv1Music.Play();
+        //lScript.currentMusic = lv1Music;
+        music.clip = lv1Music;
+        music.Play();
         //lScript.RpcPlaySound(lv1Music);
         for (int i = 0; i < 29; i++) {
             yield return new WaitForSeconds(.3f);
@@ -189,16 +193,16 @@ public class AnimationScript : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         //lScript.RpcStopSound(lv1Music);
-        //lv1Music.Stop();
+        music.Stop();
         lScript.endMinigame(true);
     }
 
     public IEnumerator Level2() //Tetris 99 theme
     {
         tempo = 0.428571428571f;
-        lScript.currentMusic = lv2Music;
         yield return new WaitForSeconds(1);
-        lv2Music.Play();
+        music.clip = lv2Music;
+        music.Play();
         for (int j = 0; j < 2; j++) {
             for (int i = 0; i < 14; i++)
             {
@@ -266,7 +270,7 @@ public class AnimationScript : MonoBehaviour
         SpawnWiper(square, Random.Range(0f, 1f), new Color(0, 0, 255), Trail.NoTrail, 0, 8, new Vector3(- 0.0464595f, 10.47177f, 1), Direction.Down);
         yield return new WaitForSeconds(tempo * 4);
 
-        lv2Music.Stop();
+        music.Stop();
         lScript.endMinigame(true);
     }
 
@@ -277,8 +281,8 @@ public class AnimationScript : MonoBehaviour
         yield return new WaitForSeconds(tempo*6);
 
         yield return new WaitForSeconds(1);
-        lScript.currentMusic = lv3Music;
-        lv3Music.Play();
+        music.clip = lv3Music;
+        music.Play();
 
         
 
@@ -286,7 +290,7 @@ public class AnimationScript : MonoBehaviour
         yield return new WaitForSeconds(tempo);
         SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo, new Vector3(-0.2464595f, 50.47177f, 1));
         yield return new WaitForSeconds(tempo);
-        lv3Music.Play();
+        music.Play();
 
         for (int i = 0; i < 6; i++)
         {
@@ -407,7 +411,7 @@ public class AnimationScript : MonoBehaviour
 
         yield return new WaitForSeconds(tempo * 4);
 
-        lv3Music.Stop();
+        music.Stop();
         lScript.endMinigame(true);
 
     }
@@ -415,15 +419,15 @@ public class AnimationScript : MonoBehaviour
     public IEnumerator Level4() //can can
     {
         tempo = 0.365853658537f;
-        lScript.currentMusic = lv4Music;
-        lv4Music.Play();
+        music.clip = lv4Music;
+
 
 
         SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo / 4, new Vector3(-0.2464595f, 50.47177f, 1));
         yield return new WaitForSeconds(tempo);
         SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo / 4, new Vector3(-0.2464595f, 50.47177f, 1));
         yield return new WaitForSeconds(tempo);
-        lv4Music.Play();
+        music.Play();
 
         for (int j = 0; j < 2; j++)
         {
@@ -516,16 +520,15 @@ public class AnimationScript : MonoBehaviour
 
         yield return new WaitForSeconds(tempo*4);
 
-        lv4Music.Stop();
+        music.Stop();
         lScript.endMinigame(true);
     }
 
     public IEnumerator Level5() //Hail to the Chief
     {
         tempo = 0.582524271845f;
-        lScript.currentMusic = lv5Music;
-
-        lv5Music.Play();
+        music.clip = lv5Music;
+        music.Play();
 
         //phrase 1
         SpawnWiper(hexagon, Random.Range(0f, 1f), new Color(0, 0, 255), Trail.HasTrail, 0, 4, new Vector3(1, 1, 1), Direction.Right);
@@ -692,20 +695,20 @@ public class AnimationScript : MonoBehaviour
 
         yield return new WaitForSeconds(tempo*16);
 
-        //lv5Music.Stop();
+        music.Stop();
         lScript.endMinigame(true);
     }
 
     public IEnumerator Level6()
     {
         tempo = 0.348837209302f;
-        lScript.currentMusic = lv6Music;
+        music.clip = lv6Music;
 
         SpawnStationary(square, new Vector2(0.5f, Random.Range(0f, 1f)), new Color(0, 0, 255), 0, tempo, new Vector3(50.47177f, -0.2464595f, 1));
         yield return new WaitForSeconds(tempo);
         SpawnStationary(square, new Vector2(Random.Range(0f, 1f), 0.5f), new Color(0, 0, 255), 0, tempo, new Vector3(-0.2464595f, 50.47177f, 1));
         yield return new WaitForSeconds(tempo);
-        lv6Music.Play();
+        music.Play();
 
         //hardstyle part
         for (int i = 0; i < 6; i++)
@@ -791,7 +794,7 @@ public class AnimationScript : MonoBehaviour
 
         yield return new WaitForSeconds(tempo * 8);
 
-        lv6Music.Stop();
+        music.Stop();
         lScript.endMinigame(true);
     }
 
